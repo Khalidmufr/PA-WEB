@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $host = 'localhost';
     $user = 'root';
     $pass = '';
-    $db = 'database';
+    $db = 'wood';
 
     $conn = mysqli_connect($host, $user, $pass, $db);
 
