@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
     if(mysqli_query($koneksi, $query)){
         echo "<script>
         alert('Berhasil daftar');
-        document.location.href = 'login.php';
+        document.location.href = 'index.php';
         </script>";
         
     } else {
@@ -60,7 +60,7 @@ if(isset($_POST['submit'])){
                                 <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Daftar</button>
                             </fieldset>
                             <br>
-                            Sudah punya akun ? <a href="login.php">Masuk</a>
+                            Sudah punya akun ? <a href="index.php">Masuk</a>
                         </form>
                     </div>
                 </div>
