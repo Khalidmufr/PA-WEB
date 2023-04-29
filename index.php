@@ -6,16 +6,6 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
     $username = mysqli_real_escape_string($koneksi, $_POST['username']);
     $password = mysqli_real_escape_string($koneksi, $_POST['password']);
     $role = mysqli_real_escape_string($koneksi, $_POST['role']);
-
-    if ($role == 'admin') {
-        $query = "SELECT * FROM login WHERE username='$username' AND password='$password' AND role='$role'";
-        $result = mysqli_query($koneksi, $query);
-        if (mysqli_num_rows($result) == 1) {
-            $_SESSION['role'] = $role;
-            $_SESSION['username'] = $username;
-            $row = mysqli_fetch_assoc($result);
-            $_SESSION['nama'] = $row['nama'];
-            header("location: admin/index.php");
         } else {
             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                 <strong>Gagal Login !</strong> Periksa kembali username dan password atau role anda.
