@@ -1,0 +1,33 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+    }
+
+    .login-panel {
+        margin-top: 50px;
+    }
+
+    .panel-heading {
+        text-align: center;
+    }
+
+    .panel-heading h3 {
+        margin-top: 0;
+    }
+
+    .btn-success {
+        background-color: #5cb85c;
+        border-color: #4cae4c;
+    }
+
+    .btn-success:hover {
+        background-color: #449d44;
+        border-color: #398439;
+    }
+
+    .btn-success:focus {
+        background-color: #449d44;
+        border-color: #398439;
+        box-shadow: none;
+    }
