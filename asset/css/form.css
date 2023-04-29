@@ -1,0 +1,168 @@
+.keluhan{
+    margin: 50px 150px 100px 150px;
+    padding: 50px 180px 40px 180px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.keluhan h1{
+    font-size: 50px;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.user {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.input-box input{
+    height: 20px;
+    width: 90%;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 9px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+.detail{
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+    margin-top: 10px;
+}
+.select{
+    height: 35px;
+    width: 97%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;   
+    transition: all 0.3s ease;
+}
+.user-details .input-box select option:valid,
+.input-box input:focus,
+.input-box2 textarea:focus{
+    border-color: burlywood;
+}
+.jenis-kelamin{
+    font-size: 16px;
+    font-weight: 500;
+    margin-top:5px ;
+}
+.category{
+    display: flex;
+    width: 25%;
+    margin: 14px 0;    
+    justify-content: space-between;
+}
+.category label{
+    display: flex;
+    align-items:center ;
+}
+.dot{
+    height:  18px;
+    width: 18px;
+    background: #d9d9d9;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+}
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two{
+    border-color: #d9d9d9;
+    background: burlywood;
+}
+form input[type="radio"]{
+    display:none
+}
+form .button{
+    height: 45px;
+    margin: 45px 0;    
+}
+form .button input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight:500 ;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background-color: burlywood;
+}
+form .button input:hover{
+    background:rgba(151, 78, 78, 0.884);
+}
+.input-box2 textarea{
+    padding-top: 3%;
+    height: 100%;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.input-box{
+    margin-bottom: 10px;
+    width: calc(100% / 2 - 20px);
+}
+.input-box2{
+    margin-bottom: 30px;
+    margin-top: 10px;
+    width: calc(100% / 2 - 20px);
+}
+.input-box .topp{
+    margin-top: 10px;
+    display: block;
+}
+.check{
+    position: absolute;
+    margin-top: 2px;
+}
+.input-box .checkbox{
+    padding-top: 3%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    height: 20px; 
+    width: 20px;
+    border-radius: 3px;
+}
+input[type="file"]{
+    display: none;
+}
+.gambar{    
+    border: none;
+    font-size: 16px;
+    color: #FFF;
+    padding: 5px 12px;
+    background-color: burlywood;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.gambar:hover{
+    background-color:rgba(151, 78, 78, 0.884);
+}
+.tes a{
+    top: -30px;
+    background: white;
+    padding: 10px 10px 20px 15px;
+    text-align: left;
+    font-size: 17px;
+    width: max-content;
+    position: absolute;
+    border-radius: 5px;
+    left: 0;    
+    color: black;
+}
+.tes a:hover{
+    color: burlywood;
+}

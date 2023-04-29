@@ -1,0 +1,155 @@
+:root {
+  --color-default: #24262b;
+  --color-primary: #deb887;
+  --color-secondary: #974e4e;
+}
+ 
+ .boxpembelian{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 200px;
+    padding-top: 50px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    border: 1px solid #ccc;
+  }
+
+.pembelian {  
+  width: 80%;
+  padding: 20px;
+}
+
+.pembelian h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.product {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.product img {
+  width:400px;
+  height: 300px;
+  margin-right: 20px;
+}
+
+.product-info {
+  margin-left: 75px;
+  align-items: center;
+}
+
+.product-info h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.product-info p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.total {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.totals {
+  margin-bottom: 10px;
+}
+.total p {
+  font-size: 18px;
+}
+
+.jumlah{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+
+
+
+
+
+.pembelian-btn {
+  display: block;
+  margin: 0 auto;
+  width: 250px;
+  font-size: 18px;
+  background-color: var(--color-secondary);
+  color: white;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
+.pembelian-btn:hover {
+  background-color: #fff;
+  border: 3px solid var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.minus-btn, .plus-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 0.875rem;
+  color: black;
+  line-height: 1.5;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+}
+
+.minus-btn:hover, .plus-btn:hover {
+  background-color: #f1f1f1;
+}
+
+input[type=number] {
+  width: 40px;
+  height: 24px;
+  padding: 4px 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input[type=number]:focus {
+  border-color: #5b9dd9;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2),
+    0 0 5px rgba(91, 157, 217, 0.5);
+}
+
+.input-box input{
+  height: 20px;
+  width: 100%;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 9px;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+.input-box textarea{
+  padding-top: 3%;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+.input-box{
+  margin-top: 10px;
+}
+

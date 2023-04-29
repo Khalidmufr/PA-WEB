@@ -1,67 +1,101 @@
 <?php
 session_start();
+require "koneksi.php";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    //koneksi ke database
-    $host = 'localhost';
-    $user = 'root';
-    $pass = '';
-    $db = 'wood';
-
-    $conn = mysqli_connect($host, $user, $pass, $db);
-
-    //memeriksa username dan password pada database
-    $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = mysqli_query($conn, $query);
-
-    if (mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['role'] = $row['role'];
-
-        if ($row['role'] == 'admin') {
-            header('location: admin_dashboard.php');
+if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role'])) {
+    $username = mysqli_real_escape_string($koneksi, $_POST['username']);
+    $password = mysqli_real_escape_string($koneksi, $_POST['password']);
+    $role = mysqli_real_escape_string($koneksi, $_POST['role']);
         } else {
-            header('location: user_dashboard.php');
+            echo "<script>
+                alert('Username dan password salah.');
+            </script>";
+        }
+    } else if ($role == 'staff') {
+        $query = "SELECT * FROM login WHERE username='$username' AND password='$password' AND role='$role'";
+        $result = mysqli_query($koneksi, $query);
+        if (mysqli_num_rows($result) == 1) {
+            $_SESSION['role'] = $role;
+            $_SESSION['username'] = $username;
+			$row = mysqli_fetch_assoc($result);
+            $_SESSION['nama'] = $row['nama'];
+            header("location: staff/index.php");
+        } else {
+            echo "<script>
+                alert('Username dan password salah.');
+            </script>";
+        }
+    } else if ($role == 'user') {
+        $query = "SELECT * FROM login WHERE username='$username' AND password='$password' AND role='$role'";
+        $result = mysqli_query($koneksi, $query);
+        if (mysqli_num_rows($result) == 1) {
+            $_SESSION['role'] = $role;
+            $_SESSION['username'] = $username;
+			$row = mysqli_fetch_assoc($result);
+            $_SESSION['nama'] = $row['nama'];
+            header("location: user/beranda.php");
+        } else {
+            echo "<script>
+                alert('Username dan password salah.');
+            </script>";
         }
     } else {
-        $error = "Username atau password salah";
+        echo "Role tidak valid!";
     }
 }
+mysqli_close($koneksi);
 ?>
+
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login Page</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login</title>
+    <!-- load Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- load custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="asset/css/login.css">
 </head>
 <body>
-	<div class="container">
-		<h1>Login Page</h1>
-		<?php if (isset($error)) { ?>
-			<div class="error"><?php echo $error; ?></div>
-		<?php } ?>
-		<form method="post">
-			<label>Username</label>
-			<input type="text" name="username" required>
-			<label>Password</label>
-			<input type="password" name="password" required>
-            <label>Role<span class="text-danger">*</span></label>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Select to choose</option>
-                <option value="1">Admin</option>
-                <option value="2">Staff</option>
-                <option value="3">User</option>
-            </select>
-			<button type="submit">Login</button>
-		</form>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Masuk</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" action="index.php" method="post">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Username<span class="text-danger">*</span></label>
+                                    <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password<span class="text-danger">*</span></label>
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Role<span class="text-danger">*</span></label>
+                                    <br>
+                                    <select class="form-control" aria-label="Default select example" name="role">
+                                        <option value="admin">Admin</option>
+                                        <option value="staff">Staff</option>
+                                        <option value="user">User</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-lg btn-success btn-block">Masuk</button>
+                            </fieldset>
+                            <br>
+                            Belum punya akun ? <a href="register.php">Daftar</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- load Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
