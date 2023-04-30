@@ -63,6 +63,8 @@
         $result = mysqli_query($koneksi, $query);
         $isi = mysqli_fetch_assoc($result);
         $id_user = $isi['id_login'];
+        $nm = $isi['nama'];
+        $status = "Belum dikirim";
         // Loop melalui array dan masukkan data ke dalam tabel database
         foreach ($cart_items as $item) {
             $harga = $item['harga'];
@@ -71,12 +73,15 @@
             $alamat = $item['alamat'];
             $jumlah = $item['jumlah'];
             $subtotal = $harga * $jumlah;
-            $query = "INSERT INTO pembelian (id_produk, id_login,nomor,alamat,jumlah,subtotal,kode) VALUES ('$id_produk', '$id_user','$nomor','$alamat','$jumlah','$subtotal','$kode')";
+            $query = "INSERT INTO pembelian (id_produk, id_login,nomor,alamat,jumlah,subtotal,status,kode) VALUES ('$id_produk', '$id_user','$nomor','$alamat','$jumlah','$subtotal','$status','$kode')";
             mysqli_query($koneksi, $query);
         }
         
         // Tutup koneksi session
         session_destroy();
+        // session_start();
+        // $_SESSION['role'] = "user";
+        // $_SESSION['nama'] = "$nm";
 
         echo "<script>
         alert('Berhasil Melakukan Pembelian');
@@ -169,7 +174,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
     <link rel="stylesheet" href="../asset/css/style.css">
-    <link rel="icon" href="../asset/gambar/Ud Haderah.png">
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Checkout</title>

@@ -95,7 +95,6 @@ if ($_SESSION['role'] !== 'admin') {
 			<div class="col-md-8 mt-4">
 				<div class="col-md-12 mt-4">
 					<h2>Fitur Upload Foto dengan PHP & Mysql</h2>
-					By : <a href="https://www.rullystudio.com">Rully Studio</a>
 				</div>
 				<div class="col-md-12 mt-4">
 					<a href="form_upload.php" class="btn btn-success mb-4">Upload</a>
@@ -103,19 +102,7 @@ if ($_SESSION['role'] !== 'admin') {
 						include "../koneksi.php" ;
 						$data = mysqli_query($koneksi, "SELECT * FROM produk order by id_produk DESC") ;
 						while ($row = mysqli_fetch_array($data)) {
-					?>
-					<!-- <div class="isi">       
-						<div id="ulin" class="konten-produk">
-							<div class="isi-teks">
-								<h2><?php echo $row['nama_produk'] ; ?></h2>
-								<p>Kayu ulin sering digunakan untuk membangun konstruksi bangunan seperti jembatan, pelabuhan, dermaga, dan bangunan tahan gempa.</p>                
-								<div class="harga">Rp. 140.000/Batang</div>
-								<a href="checkout.html"><button>Beli Sekarang</button></a>
-							</div> 
-							<img src="file/<?php echo $row['gambar'] ; ?>">
-						</div>      
-					</div> -->
-
+					?>	
 					<div class="col-md-12 row mb-5">
 						<div class="col-md-3">
 							<img src="file/<?php echo $row['gambar'] ; ?>" style="width: 100%;">
