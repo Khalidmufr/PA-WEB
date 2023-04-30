@@ -23,6 +23,7 @@ if ($_SESSION['role'] !== 'user') {
     <script src="https://kit.fontawesome.com/d6fbd45f78.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://kit.fontawesome.com/d6fbd45f78.css" crossorigin="anonymous">
     <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="icon" href="../asset/gambar/Ud Haderah.png">
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Lokasi</title>
@@ -77,7 +78,7 @@ if ($_SESSION['role'] !== 'user') {
     </div>
 </div>
 <footer>
-    <p>©Copyright 2023 Rizq Saputra</p>
+    <p>Hak Cipta © 2023 - Kelompok 3 C1</p>
 </footer>
 <script src="js/beranda.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

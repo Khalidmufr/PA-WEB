@@ -87,6 +87,7 @@ if (isset($_POST["submit"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
     <link rel="stylesheet" href="../asset/css/style.css">
     <link rel="stylesheet" href="../asset/css/pembelian.css">
+    <link rel="icon" href="../asset/gambar/Ud Haderah.png">
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Pembelian</title>
@@ -188,7 +189,7 @@ if (isset($_POST["submit"])) {
                          
         </section>
         <footer>
-            <p>©Copyright 2023 Rizq Saputra</p>
+            <p>Hak Cipta © 2023 - Kelompok 3 C1</p>
         </footer>
         </main>
     </div>
