@@ -56,7 +56,7 @@ if ($_SESSION['role'] !== 'admin') {
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
                           Beranda
                         </a>
-                      </li>
+                      </li> 
                       <li>
                         <a href="produk.php" class="nav-link text-white">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
@@ -97,59 +97,64 @@ if ($_SESSION['role'] !== 'admin') {
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
-                <div class="Isi">  
-                  <br>                
-                    <h1 class="text-center">Tabel Pembelian</h1>
+                <div class="Isi">
+                  <h1>Form Input</h1>
+                  <form>        
+                    <span class="sub">nama</span>
+                    <input type="text" id="b" placeholder="Masukkan Nama" name="nama_produk">
+                    <span class="sub">harga</span>
+                    <input type="text" id="c" placeholder="Masukkan Harga" name="harga">
+                    <span class="sub">gambar</span>  
+                    <input type="file" name="gambar">
                     <br>
-                    <table id="tabel" class="table table-hover" border="2" cellspacing="0" width="100%">
-                        <tr>
-                          <th rowspan="1" bgcolor="yellowgreen">id_Pembelian</th>
-                          <th rowspan="1" bgcolor="yellow">Produk</th>
-                          <th rowspan="1" bgcolor="yellowgreen">Mama</th>
-                          <th rowspan="1" bgcolor="yellow">Nomor</th>
-                          <th rowspan="1" bgcolor="yellowgreen">Alamat</th>
-                          <th colspan="1" bgcolor="yellow">Jumlah</th>
-                          <th colspan="1" bgcolor="yellow">Subtotal</th>
-                          <th colspan="1" bgcolor="yellow">Status</th>
-                          <th colspan="1" bgcolor="yellow">Kode</th>
-                          <th colspan="1" bgcolor="yellow">Aksi</th>
-                        </tr>  
+    
+        <input type="submit" value="submit" cursorshover="true" onclick="tambahData()">
 
-            <?php 
+            </form>
+              <hr>
+                <h1 class="text-center">                  
+                Tabel Produk                
+                </h1>
+                <br>
+                <table id="tabel" class="table table-hover" border="2" cellspacing="0" width="100%">
+
+                    <tr>
+                      <th rowspan="1" bgcolor="yellowgreen">No_Produk</th>
+                      <th rowspan="1" bgcolor="yellow">Nama</th>
+                      <th rowspan="1" bgcolor="yellowgreen">Harga</th>
+                      <th rowspan="1" bgcolor="yellowgreen">Gambar</th>
+                      <th colspan="1" bgcolor="yellow">Aksi</th>
+                    </tr> 
+                    
+                <?php 
             include "../koneksi.php" ;
-            $query = "SELECT * FROM pembelian 
-            JOIN produk ON pembelian.id_produk = produk.id_produk
-            JOIN login ON pembelian.id_login = login.Id_login;";
+            $query = "SELECT * FROM produk;";
             
             $data = mysqli_query($koneksi,$query) ;
             while ($row = mysqli_fetch_array($data)) {
-            $subtotal = $row['subtotal'];
-            ?>                          
-              <tr>
-                <td><?php echo $row['id_pembelian'] ; ?></td>                     
-                <td><?php echo $row['nama_produk'] ; ?></td>                     
-                <td><?php echo $row['nama'] ; ?></td>                     
-                <td><?php echo $row['nomor'] ; ?></td>                     
-                <td><?php echo $row['alamat'] ; ?></td>                     
-                <td><?php echo $row['jumlah'] ; ?></td>                     
-                <td><?php echo number_format($subtotal, 0, ',', '.'); ?></td>                     
-                <td><?php echo $row['status'] ; ?></td>                     
-                <td><?php echo $row['kode'] ; ?></td>                     
-                <td><button>aksi</button></td>                     
-              </tr>
-              
-            <?php } ?>
-                    </table>
+            $harga = $row['harga'];
+            ?>     
+                    <tr>
+                      <td><?php echo $row['id_produk'] ; ?></td>
+                      <td><?php echo $row['nama_produk'] ; ?></td>
+                      <td><?php echo number_format($harga, 0, ',', '.'); ?></td>
+                      <td><?php echo $row['gambar'] ; ?></td>
+                      <td><button>aksi</button></td>
+                    </tr>
+
+             <?php }?>       
+                </table>
                 </div>
                 </div>
             </div>
         </div>
-      <footer>
+        <footer>
           <div class="foot">
               <img src="../asset/gambar/Ud Haderah.png" width="150px">
               <p> Hak Cipta © 2023 - Kelompok 3 C1</p>
           </div>
-      </footer>       
+      </footer>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

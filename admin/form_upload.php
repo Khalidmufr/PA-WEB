@@ -10,7 +10,6 @@
 			<div class="col-md-6 mt-5">
 				<div class="col-md-12 text-center">
 					<h2>Fitur Upload gambar dengan PHP & Mysql</h2>
-					By : <a href="https://www.rullystudio.com">Rully Studio</a>
 				</div>
 				<div class="col-md-12 mt-5">
 					<form enctype="multipart/form-data" method="post" action="upload.php">
