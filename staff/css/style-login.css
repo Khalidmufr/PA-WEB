@@ -1,0 +1,56 @@
+
+.sub{
+    color: rgb(43, 43, 43);
+    text-align: left;
+    display: block;
+    padding: 10px 0 0 5px;
+}
+input[type=text],input[type=password]{
+    font-size: 15px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    transition: 0.5s;
+    outline: none;
+    background-size: 30px;
+    background-position: 5px 5px;
+    border-radius: 5px;
+}
+form select {
+    font-size: 15px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    transition: 0.5s;
+    outline: none;
+    background-size: 30px;
+    background-position: 5px 5px;
+    border-radius: 5px;
+}
+input[type=submit] {
+    width: 100px;
+    display: block;
+    margin: auto;
+    font-size: 15px;
+    background: #fe0101;
+    color: white;
+    border: #fe0101 3px solid;
+    border-radius: 5px;
+    padding: 12px 20px;
+    margin-top: 10px;
+    transition: 0.5s;
+}
+.akun{
+    color: black;
+}
+.akun a{
+    font-style: oblique;
+    text-decoration: none;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    color: #0082d8;
+}
