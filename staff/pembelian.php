@@ -57,12 +57,6 @@ if ($_SESSION['role'] !== 'staff') {
                           Beranda
                         </a>
                       </li>
-                      <li>
-                        <a href="produk.php" class="nav-link text-white">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                          Produk
-                        </a>
-                      </li>
                       <li>                        
                         <a href="pembelian.php" class="nav-link text-white">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
