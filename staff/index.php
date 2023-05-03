@@ -64,9 +64,9 @@ if ($_SESSION['role'] !== 'staff') {
                         </a>
                       </li>
                       <li>                        
-                        <a href="pembelian.php" class="nav-link text-white">
+                        <a href="mobil.php" class="nav-link text-white">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                          Pembelian
+                          mobil
                         </a>
                         <a href="?logout=true" class="nav-link text-white">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>

@@ -12,7 +12,21 @@ if ($_SESSION['role'] !== 'admin') {
     session_destroy();
     header('Location: ../index.php');
     exit();
-  } ?>
+  } 
+  
+  if(isset($_POST["hapus"])) {
+    $id_pembelian = $_POST['hapus'];    
+    $query = "DELETE FROM pembelian WHERE id_pembelian = '$id_pembelian';";
+    // Menjalankan query
+    if (mysqli_query($koneksi, $query)) {
+      echo "<script>  alert('Berhasil');
+      </script>";
+    } else {
+      echo "<script>  alert('Gagal');
+      </script>";      
+    } 
+    }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,7 +34,7 @@ if ($_SESSION['role'] !== 'admin') {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Pemain Favorit</title>
+        <title>Pembelian</title>
         <link rel="icon" href="../asset/gambar/Ud Haderah.png">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
@@ -115,6 +129,7 @@ if ($_SESSION['role'] !== 'admin') {
                           <th colspan="1" bgcolor="yellow">Aksi</th>
                         </tr>  
 
+                        <form method="post">
             <?php 
             include "../koneksi.php" ;
             $query = "SELECT * FROM pembelian 
@@ -135,10 +150,11 @@ if ($_SESSION['role'] !== 'admin') {
                 <td><?php echo number_format($subtotal, 0, ',', '.'); ?></td>                     
                 <td><?php echo $row['status'] ; ?></td>                     
                 <td><?php echo $row['kode'] ; ?></td>                     
-                <td><button>aksi</button></td>                     
+                <td><button type="submit" name="hapus" value="<?php echo $row["id_pembelian"] ?>">Hapus</button></td>                     
               </tr>
               
             <?php } ?>
+            </form>
                     </table>
                 </div>
                 </div>
