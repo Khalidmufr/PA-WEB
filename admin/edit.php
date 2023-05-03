@@ -14,31 +14,48 @@ if ($_SESSION['role'] !== 'admin') {
     exit();
   } 
 
-  if(isset($_POST["hapus"])) {
-    $id_produk = $_POST['hapus'];
-    $data = mysqli_query ($koneksi, "SELECT * FROM produk WHERE id_produk = '$id_produk' ") ;
-    $row = mysqli_fetch_array($data) ;
+  $id = $_GET['id'];
 
-    $gambar = $row['gambar'] ;
-    if(file_exists('../file/'.$gambar))
-    {
-      unlink('../file/'.$gambar);
-    }
-
-    $query = "DELETE FROM produk WHERE id_produk = '$id_produk';";
-    // Menjalankan query
-    if (mysqli_query($koneksi, $query)) {
-      echo "<div class='alert alert-success'><strong>Berhasil Menghapus Produk.
-      <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></strong>
-      </div>";
-    } else {
-      "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <strong>Gagal Login !</strong> Periksa kembali username dan password atau role anda.
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>";      
-    } 
-    }
+  $query = "SELECT * FROM produk WHERE id_produk = '$id'";
+  $result = mysqli_query($koneksi, $query);
   
+  if(!isset($_GET["id"])){
+      header ("Location: produk.php");
+      exit;
+  }else if(mysqli_num_rows($result ) ==  1 ){
+    //   header ("Location: produk.php");
+  }else {
+      header ("Location: produk.php");
+      exit;
+  }
+  function ubah($data){
+      global $koneksi;
+      
+      $id = $_POST["id"];
+      $nama_produk = $_POST["nama_produk"];
+      $harga = $_POST["harga"];
+      $gambar = $_POST["gambar"];
+      
+      $data = mysqli_query ($koneksi, "SELECT * FROM produk WHERE id_produk = '$_GET[id]' ") ;
+      $result = mysqli_fetch_array($data) ;
+  
+      $gambarn = $result['gambar'] ;
+      if(file_exists('../file/'.$gambarn))
+      {
+          unlink('../file/'.$gambarn) ;
+      }
+      $gambarn = $_FILES['gambar']['name'];
+      $file_tmp = $_FILES['gambar']['tmp_name'] ;
+      move_uploaded_file($file_tmp, '../file/'.$gambarn) ;
+      
+      $query ="UPDATE produk SET
+                  nama_produk = '$nama_produk',
+                  harga ='$harga',
+                  gambar = '$gambar'
+                  WHERE id_produk = '$id' ";
+      $result = mysqli_query($koneksi, $query);
+      return mysqli_affected_rows($koneksi);          
+  }
   
   ?>
 <!DOCTYPE html>
@@ -128,7 +145,8 @@ if ($_SESSION['role'] !== 'admin') {
                 <div class="container-fluid">
                 <div class="Isi">
                   <h1>Form Input</h1>
-                  <form enctype="multipart/form-data" action="upload.php" method="POST">        
+                  <form enctype="multipart/form-data" method="POST"> 
+                    <input type="hidden" name="id" value="<?php echo $row['id_produk']?>">    
                     <span class="sub">nama</span>
                     <input type="text" placeholder="Masukkan Nama" name="nama_produk">
                     <span class="sub">harga</span>
@@ -136,7 +154,7 @@ if ($_SESSION['role'] !== 'admin') {
                     <span class="sub">gambar</span>  
                     <input type="file" name="gambar">
                     <br>  
-                    <input type="submit" name="submit" value="submit" cursorshover="true">
+                    <input type="submit" name="update" cursorshover="true">
                   </form>
               <hr>
                 <h1 class="text-center">                  
@@ -168,7 +186,7 @@ if ($_SESSION['role'] !== 'admin') {
                       <td><?php echo $row['nama_produk'] ; ?></td>
                       <td><?php echo number_format($harga, 0, ',', '.'); ?></td>
                       <td><?php echo $row['gambar'] ; ?></td>
-                      <td><span><a href="edit.php?id=<?php echo $row["id_produk"] ?>"><button>Edit</button></span></a> <span><button type="submit" name="hapus" value="<?php echo $row["id_produk"] ?>">Hapus</button></span></td>
+                      <td><a href="../produk.php"><button>Tambah</button></a></td>
                     </tr>
 
              <?php }?>       

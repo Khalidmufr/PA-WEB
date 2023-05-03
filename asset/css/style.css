@@ -281,7 +281,8 @@ h5{
 
 
 .produk{
-    width: 100%;    
+    width: 100%;   
+    /* margin: 50px 150px 150px 500px; */
     margin-top: 50px;
     margin-bottom: 500px;
 }
@@ -335,9 +336,7 @@ h5{
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    /* box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; */
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-
 }
 .konten-produk:hover{
     transition: 0.5s;
@@ -356,7 +355,7 @@ h5{
     text-transform: capitalize;
     margin-bottom: 10px;
     margin-top: 15px;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
 }
 .isi-teks p{
     letter-spacing: 1px;

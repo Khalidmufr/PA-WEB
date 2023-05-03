@@ -21,6 +21,7 @@ if ($_SESSION['role'] !== 'user') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
     <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="icon" href="../asset/gambar/Ud Haderah.png">
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Pesanan</title>
@@ -52,18 +53,23 @@ if ($_SESSION['role'] !== 'user') {
             <div class="isi">       
             <?php 
                 include "koneksi.php" ;
-                $query1 = mysqli_query($koneksi,"SELECT * FROM pembelian GROUP BY kode");
+                $nama = $_SESSION['nama'];
+                $query = "SELECT id_login FROM login where nama = '$nama'";
+                // Eksekusi query dan ambil hasilnya
+                $result = mysqli_query($koneksi, $query);
+                $isi = mysqli_fetch_assoc($result);
+                $id_user = $isi['id_login'];
+                $query1 = mysqli_query($koneksi,"SELECT * FROM pembelian where id_login='$id_user' GROUP BY kode");
                 // $data = mysqli_query($koneksi, "SELECT * FROM produk order by id_produk DESC") ;
                 while ($row = mysqli_fetch_array($query1)) {
                 $total = 0;
-                    ?>
+            ?>
                 <div id="ulin" class="konten-produk">
             <?php
                     $kode = $row['kode'];
                     $k2 = "SELECT * FROM pembelian 
                     JOIN produk ON pembelian.id_produk = produk.id_produk
-                    JOIN login ON pembelian.id_login = login.Id_login where kode = '$kode';";
-                    
+                    JOIN login ON pembelian.id_login = login.Id_login where pembelian.id_login = '$id_user' AND kode = '$kode';";
                     $result = mysqli_query($koneksi,$k2);
                     foreach ($result as $row) {
 
@@ -78,10 +84,13 @@ if ($_SESSION['role'] !== 'user') {
                     <img src="../file/<?php echo $row['gambar'] ; ?>">
                     <div class="isi-teks">
                         <h2>Produk : <?php echo $row['nama_produk'] ; ?></h2>
+                        <p>Alamat : <?php echo $row['alamat']; ?></p>                
+                        <p>Nomor : <?php echo $row['nomor']; ?></p>                
                         <p>Harga : Rp <?php echo number_format($harga, 0, ',', '.'); ?></p>                
                         <p>Jumlah : <?php echo "$jumlah"; ?></p>                
                         <p>Subtotal : <?php echo number_format($subtotal, 0, ',', '.'); ?></p>                
-                        <p>Status : <?php echo "$status"; ?></p>                
+                        <p>Status : <?php echo "$status"; ?></p>    
+                        <hr style="border-bottom: 1px solid black">            
                     </div> 
                     <?php } ?>
                     <div class="harga">Total Pembayaran : Rp <?php echo number_format($total, 0, ',', '.');  ?></div>

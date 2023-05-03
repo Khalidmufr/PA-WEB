@@ -55,9 +55,9 @@
     } else {
         $kode=1;
     }
+    $nama = $_SESSION['nama'];
 
     if(isset($_POST['submit'])) {
-        $nama = $_SESSION['nama'];
         $query = "SELECT id_login FROM login where nama = '$nama'";
         // Eksekusi query dan ambil hasilnya
         $result = mysqli_query($koneksi, $query);
@@ -78,10 +78,8 @@
         }
         
         // Tutup koneksi session
-        session_destroy();
-        // session_start();
-        // $_SESSION['role'] = "user";
-        // $_SESSION['nama'] = "$nm";
+        // session_destroy();
+        unset($_SESSION['cart']);  
 
         echo "<script>
         alert('Berhasil Melakukan Pembelian');
@@ -174,6 +172,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
     <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="icon" href="../asset/gambar/Ud Haderah.png">
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Checkout</title>
@@ -188,7 +187,7 @@
                         <li><a href="produk.php">Produk</a></li>
                         <li><a href="keluhan.php">Keluhan</a></li>
                         <li><a href="lokasi.php">Lokasi</a></li>
-                        <li class="keranjang"><a href="checkout.php"><span><h1></h1><i class="fa-solid fa-cart-shopping"></i></span></a></li>
+                        <li class="keranjang garis"><a href="checkout.php"><span><h1></h1><i class="fa-solid fa-cart-shopping"></i></span></a></li>
                         <li class="dropdown">
                             <a href="javascript:void{0}" class="dropbtn"><img src="../asset/gambar/k.jpg" alt=""></a>
                             <div class="dropcontent">
