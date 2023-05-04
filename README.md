@@ -1,8 +1,6 @@
-**#Tutorial Website UD HADERAH**
+# Tutorial Website UD HADERAH
 
-|                              |  |                              | |                              |  |                              | |                              |  |                              | |                              | |                              | |                              |   |                              | |                              | |                              | |                              |
-
-**## Entity Relationship Diagram**
+## Entity Relationship Diagram
 
 Sebelum membuat suatu website pada umumnya kita akan membuat database terlebih dahulu maka di bawah ini akan ada penjelasan dari database kami.
 
@@ -51,7 +49,7 @@ Sebelum membuat suatu website pada umumnya kita akan membuat database terlebih d
 
 NOTE : Tabel pembelian merupakan tabel bantu
 
-**## Relasi**
+## Relasi
 
 Setelah mengetahui tipe data dari masing-masing tabel maka selanjutnya adalah relasi antar tabel yang ada di bawah ini :
 
