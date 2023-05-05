@@ -72,3 +72,59 @@ one to many :
  many to many :
   - banyak staff mengecek banyak pembelian
   - banyak pembelian mengecek banyak staff
+
+
+
+## Use Case Diagram
+
+di bawah ini terdapat use case diagram yang di mana berisi aktor dan alur dari aktor tersebut
+
+![wood](https://user-images.githubusercontent.com/120180482/236581278-3fac73f7-9daa-4884-975c-9e679f70e244.jpg)
+
+Berikut adalah contoh end-to-end use case menggunakan website UD HADERAH, yang berisi role admin, user, dan staff:
+
+1. Use case "Admin Melakukan CRUD Produk/Pembelian/Supir/Mobil"
+
+- Aktor: Admin
+- Tujuan: Admin dapat menambah, mengubah, dan menghapus data produk, pembelian, supir dan mobil.
+- Alur kerja:
+  - Admin masuk ke sistem dan membuka halaman admin.
+  - Admin memilih opsi "CRUD Produk/Pembelian/Supir/Mobil".
+  - Admin memilih opsi "Tambah Data Produk/Pembelian/Supir/Mobil".
+  - Admin memasukkan informasi".
+  - Admin memilih opsi "Simpan".
+  - Admin memilih opsi "Ubah Data Produk/Pembelian/Supir/Mobil".
+  - Admin memilih data Produk/Pembelian/Supir/Mobil yang ingin diubah.
+  - Admin memperbarui informasi.
+  - Admin memilih opsi "Simpan".
+  - Admin memilih opsi "Hapus Data Produk/Pembelian/Supir/Mobil".
+  - Admin memilih data Produk/Pembelian/Supir/Mobil yang ingin dihapus.
+  - Admin memilih opsi "Hapus".
+
+2. Use case "User Melakukan Transaksi Pembelian"
+
+- Aktor: User
+- Tujuan: User dapat membeli produk melalui sistem dan melihat status transaksi mereka.
+- Alur kerja:
+  - User masuk ke sistem dan membuka halaman transaksi pembelian produk.
+  - User memilih jenis produk dan jumlah yang ingin dibeli.
+  - Sistem menampilkan total biaya pembelian dan meminta konfirmasi dari user.
+  - Sistem memasukkan pembelian ke keranjang.
+  - User memilih opsi "Checkout".
+  - Sistem menampilkan halaman pembayaran dan meminta user memasukkan informasi pembayaran.
+  - User memasukkan informasi pembayaran dan memilih opsi "Bayar".
+  - Sistem menampilkan konfirmasi pembayaran kepada user.
+  - User dapat melihat status transaksi mereka di halaman lihat pesanan.
+
+3. Use case "Staff Mengirim Pesanan"
+
+- Aktor: Staff
+- Tujuan: Staff dapat mengirim pembelian produk yang dipesan oleh user setelah pembayaran telah dikonfirmasi.
+- Alur kerja:
+  - Staff memverifikasi pembayaran dari user yang telah dilakukan sebelumnya.
+  - Apabila pembayaran telah dikonfirmasi, staff memproses pengiriman produk.
+  - Staff melakukan pengecekan ketersediaan mobil.
+  - Mobil tersedia, staff melalukan pengiriman.
+  - Sistem mengirimkan notifikasi kepada user bahwa pesanan mereka telah dikirimkan.
+
+Dalam contoh di atas, ketiga use case saling terkait dan membentuk end-to-end use case yang menjelaskan alur kerja lengkap dari awal hingga akhir, melibatkan semua aktor dan alur dalam website UD Haderah.
