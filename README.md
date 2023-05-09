@@ -4,6 +4,9 @@
 
 Sebelum membuat suatu website pada umumnya kita akan membuat database terlebih dahulu maka di bawah ini akan ada penjelasan dari database kami.
 
+![erd php](https://user-images.githubusercontent.com/120180482/236963811-d47c198f-20c4-48c6-9cf0-60c527beef1c.jpg)
+
+
 ![Logical](https://user-images.githubusercontent.com/120180482/236262844-c41ca4bd-8f08-4e9f-b934-847740d8179c.png)
 
 **Tabel Login** 
@@ -79,7 +82,7 @@ one to many :
 
 di bawah ini terdapat use case diagram yang di mana berisi aktor dan alur dari aktor tersebut
 
-![wood](https://user-images.githubusercontent.com/120180482/236581278-3fac73f7-9daa-4884-975c-9e679f70e244.jpg)
+![wood](https://user-images.githubusercontent.com/120180482/236963810-1bc1e478-c257-4ddb-a10d-937d5bacdadf.jpg)
 
 Berikut adalah contoh end-to-end use case menggunakan website UD HADERAH, yang berisi role admin, user, dan staff:
 
@@ -116,7 +119,7 @@ Berikut adalah contoh end-to-end use case menggunakan website UD HADERAH, yang b
   - Sistem menampilkan konfirmasi pembayaran kepada user.
   - User dapat melihat status transaksi mereka di halaman lihat pesanan.
 
-3. Use case "Staff Mengirim Pesanan"
+3. Use case "Staff Mengatur Pengiriman dan Manajemen Mobil"
 
 - Aktor: Staff
 - Tujuan: Staff dapat mengirim pembelian produk yang dipesan oleh user setelah pembayaran telah dikonfirmasi.
@@ -124,7 +127,7 @@ Berikut adalah contoh end-to-end use case menggunakan website UD HADERAH, yang b
   - Staff memverifikasi pembayaran dari user yang telah dilakukan sebelumnya.
   - Apabila pembayaran telah dikonfirmasi, staff memproses pengiriman produk.
   - Staff melakukan pengecekan ketersediaan mobil.
-  - Mobil tersedia, staff melalukan pengiriman.
+  - Mobil tersedia, staff memilih supir untuk melalukan pengiriman.
   - Sistem mengirimkan notifikasi kepada user bahwa pesanan mereka telah dikirimkan.
 
 Dalam contoh di atas, ketiga use case saling terkait dan membentuk end-to-end use case yang menjelaskan alur kerja lengkap dari awal hingga akhir, melibatkan semua aktor dan alur dalam website UD Haderah.
