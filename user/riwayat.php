@@ -30,7 +30,7 @@ if ($_SESSION['role'] !== 'user') {
 <body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0" cz-shortcut-listen="true">
 <div class="container">
     <header>
-        <label class="logo"><img src="gambar/Ud Haderah.png"></label>
+        <label class="logo"><img src="../asset/gambar/Ud Haderah.png"></label>
             <nav>
                 <ul class="navbar">
                     <li><a href="beranda.php">Beranda</a></li>
@@ -39,7 +39,7 @@ if ($_SESSION['role'] !== 'user') {
                     <li><a href="lokasi.php">Lokasi</a></li>
                     <li class="keranjang"><a href="checkout.php"><span><h1></h1><i class="fa-solid fa-cart-shopping"></i></span></a></li>
                     <li class="dropdown">
-                        <a href="javascript:void{0}" class="dropbtn"><img src="gambar/k.jpg" alt=""></a>
+                        <a href="javascript:void{0}" class="dropbtn"><img src="../asset/gambar/k.jpg" alt=""></a>
                         <div class="dropcontent">
                             <a href="#"><p><span> <i class="fa-solid fa-user"></i> </span><span><?php echo $_SESSION['nama']; ?></span></p></a>
                             <a href="pesanan.php"><p><span> <i class="fa-solid fa-box-open"></i> </span>Pesanan Anda</span></p></a>
@@ -96,9 +96,7 @@ if ($_SESSION['role'] !== 'user') {
             </div>
         </section>  
     </main>
-    <footer>
-        <p>Hak Cipta © 2023 - Kelompok 3 C1</p>
-    </footer>
+    </div>    
 </div>
 
 <script src="../asset/js/riwayat.js"></script>

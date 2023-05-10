@@ -34,7 +34,7 @@ function submitForm() {
     });
     alert("Keluhan anda berhasil terkirim");
     sessionStorage.setItem('dataKeluhan', JSON.stringify(dataKeluhan));
-    window.location.href = "riwayat.html"
+    window.location.href = "riwayat.php"
 }
 
   document.getElementById('keluhanform').addEventListener('submit', function(event) {

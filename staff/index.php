@@ -155,7 +155,7 @@ if ($_SESSION['role'] !== 'staff') {
 
                     <div class="card">
                         <div class="card-head">
-                            <h4><?php echo $row[0]; ?></h4>
+                            <h4><?php echo $row4[0]; ?></h4>
                             <span class="las la-envelope"></span>
                         </div>
                         <div class="card-progress">
