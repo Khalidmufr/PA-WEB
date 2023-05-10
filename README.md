@@ -153,13 +153,13 @@ Dalam contoh di atas, ketiga use case saling terkait dan membentuk end-to-end us
 - berisi tampilan dari halaman utama seperti dashboard, jenis pelayanan, galeri dan login
 
 - lalu membuka login untuk melihat halaman sesuai role
-![Screenshot (110)](https://github.com/romyhakimwardana/PA-WEB/assets/120180482/fbc3f694-4b87-4fe0-af23-79b24d3ca727)
 
-![Landing Page](https://github.com/romyhakimwardana/gambar-gratis-2023/assets/120180482/67914953-42dc-4c8c-a7b5-c85abaf7d2a4)
+![WhatsApp Image 2023-05-10 at 21 36 35](https://github.com/romyhakimwardana/PA-WEB/assets/120180482/a15e9c50-b8bb-49c6-aa74-dea3964d676b
 
-![Landing Page](https://github.com/romyhakimwardana/gambar-gratis-2023/assets/120180482/cfcf60f8-0676-4fe3-ac80-46fa60aba421)
+![WhatsApp Image 2023-05-10 at 21 36 36](https://github.com/romyhakimwardana/PA-WEB/assets/120180482/37567608-70d3-4236-bcc6-db7e12d4a19c)
 
-![Landing Page](https://github.com/romyhakimwardana/gambar-gratis-2023/assets/120180482/aee42275-a062-4699-9d74-950b59b12916)
+![WhatsApp Image 2023-05-10 at 21 36 36](https://github.com/romyhakimwardana/PA-WEB/assets/120180482/e978e362-b4db-41f6-ba73-691efb60bed3)
+
 
 **2. Login Admin**
 
