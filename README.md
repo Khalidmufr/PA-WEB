@@ -154,7 +154,7 @@ Dalam contoh di atas, ketiga use case saling terkait dan membentuk end-to-end us
 
 - lalu membuka login untuk melihat halaman sesuai role
 
-![Landing Page](https://github.com/romyhakimwardana/gambar-gratis-2023/assets/120180482/67914953-42dc-4c8c-a7b5-c85abaf7d2a4)
+![Landing Page](https://github.com/romyhakimwardana/gambar-gratis-2023/assets/120180482/67914953-42dc-4c8c-a7b5-c85abaf7d2a4.jpg)
 
 ![Landing Page](https://github.com/romyhakimwardana/gambar-gratis-2023/assets/120180482/cfcf60f8-0676-4fe3-ac80-46fa60aba421)
 
