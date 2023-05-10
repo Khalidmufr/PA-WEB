@@ -313,7 +313,7 @@ Dalam contoh di atas, ketiga use case saling terkait dan membentuk end-to-end us
 
 - apabila melakukan login sesuai role yaitu staff maka akan masuk ke halaman staff
 
-![Staff](https://github.com/romyhakimwardana/gambar-gratis-2023/assets/120180482/0f09cd80-cac5-4e02-9b7d-a0eac347b916)
+![WhatsApp Image 2023-05-10 at 21 13 10](https://github.com/romyhakimwardana/PA-WEB/assets/120180482/23a9f1ca-28dd-430e-801c-26972e5f626d)
 
 **7. Halaman Staff**
 
