@@ -22,7 +22,7 @@ form select {
     font-size: 15px;
     width: 100%;
     padding: 12px 20px;
-    margin: 10px;
+    margin: 8px 0;
     box-sizing: border-box;
     border: 2px solid #ccc;
     transition: 0.5s;
@@ -36,10 +36,11 @@ input[type=submit] {
     display: block;
     margin: auto;
     font-size: 15px;
+    background: #fe0101;
     color: white;
+    border: #fe0101 3px solid;
     border-radius: 5px;
     padding: 12px 20px;
-    width: fit-content;
     margin-top: 10px;
     transition: 0.5s;
 }

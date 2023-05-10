@@ -12,7 +12,27 @@ if ($_SESSION['role'] !== 'admin') {
     session_destroy();
     header('Location: ../index.php');
     exit();
-  } ?>
+  } 
+  
+  
+  $query = "SELECT COUNT(*) FROM login;";
+  $result = mysqli_query($koneksi, $query);
+  $row = mysqli_fetch_array($result);
+  
+  $query2 = "SELECT sum(subtotal) FROM pembelian WHERE status = 'Sudah Terkirim';" ;
+  $result2 = mysqli_query($koneksi, $query2);
+  $row2 = mysqli_fetch_array($result2);
+  
+  $query3 = "SELECT count(*) FROM pembelian WHERE status = 'Sudah Terkirim';";
+  $result3 = mysqli_query($koneksi, $query3);
+  $row3 = mysqli_fetch_array($result3);
+
+  $query4 = "SELECT count(*) FROM pembelian WHERE status = 'Belum dikirim';";
+  $result4 = mysqli_query($koneksi, $query4);
+  $row4 = mysqli_fetch_array($result4);
+
+  ?>
+  
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,6 +44,13 @@ if ($_SESSION['role'] !== 'admin') {
         <link rel="icon" href="../asset/gambar/Ud Haderah.png">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="style-login.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">    
+      <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+
     </head>
     <style>
         .navbar {
@@ -43,62 +70,38 @@ if ($_SESSION['role'] !== 'admin') {
             <!-- Sidebar-->
             <div id="sidebar-wrapper">
                 <div class="sidebar-heading">Admin</div>
-                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                      <img src="../asset/gambar/Ud Haderah.png" class="bi me-2" width="250" height="50">
-                    </a>
-                    <hr>
+                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">                   
                     <ul class="nav nav-pills flex-column mb-auto">
                       <li>
                 
-                        <a href="#" class="nav-link text-white">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-                          Beranda
+                      <a href="#" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+                        Beranda
                         </a>
                       </li>
                       <li>
-                        <a href="halaman.php" class="nav-link text-white">
+                        <a href="produk.php" class="nav-link text-white">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                          Tabel Role
+                          Produk
                         </a>
                       </li>
-                      <li>
-                        <a href="anggota.php" class="nav-link text-white">
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                          Tabel Produk
-                        </a>
+                      <li>                        
                         <a href="Pembelian.php" class="nav-link text-white">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                          Tabel Pembelian
+                          Pembelian
+                        </a>
+                        <a href="supir.php" class="nav-link text-white">
+                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+                          Supir
+                        </a>
+                        <a href="mobil.php" class="nav-link text-white">
+                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+                          Mobil
                         </a>
                         <a href="?logout=true" class="nav-link text-white">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                           Logout
-                        </a>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                        </a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                   </div>
             </div>
             <!-- Page content wrapper-->
@@ -112,337 +115,72 @@ if ($_SESSION['role'] !== 'admin') {
                     </div>
                 </nav>
                 <!-- Page content-->
-                <div class="container-fluid">
-                  <div class="Isi">
-                    <h1 class="text-center">
-                    Tabel Role
-                    </h1>
-                    <br>
-                    <table id="tb" class="table table-hover" border="2" cellspacing="0" width="100%">
-                        <tr>
-                            <th rowspan="1" bgcolor="yellowgreen">No_Role</th>
-                            <th rowspan="1" bgcolor="yellow">Username</th>
-                            <th rowspan="1" bgcolor="yellowgreen">Nama</th>
-                            <th rowspan="1" bgcolor="yellowgreen">Role</th>
-                        </tr>  
-                       
-                      </table>
-                </div>
-                <br>
-                <div class="Isi">
-                  <br><br>
-                    <h1 class="text-center">
-                    Tabel Produk
-                    </h1>
-                    <br><br>
-                    <table id="tabel" class="table table-hover" border="2" cellspacing="0" width="100%">
-                      <tr>
-                          <th rowspan="1" bgcolor="yellowgreen">No_Produk</th>
-                          <th rowspan="1" bgcolor="yellow">Nama</th>
-                          <th rowspan="1" bgcolor="yellowgreen">Harga</th>
-                          <th colspan="1" bgcolor="yellow">Gambar</th>
-                      </tr>  
-                    </table>
-                  </div>
-                  <div class="Isi">
-                  <br><br>
-                    <h1 class="text-center">
-                    Tabel Pembelian
-                    </h1>
-                    <br><br>
-                    <table id="tabel" class="table table-hover" border="2" cellspacing="0" width="100%">
-                      <tr>
-                          <th rowspan="1" bgcolor="yellowgreen">No_Pembelian</th>
-                          <th rowspan="1" bgcolor="yellow">No_Produk</th>
-                          <th rowspan="1" bgcolor="yellowgreen">No_Role</th>
-                          <th rowspan="1" bgcolor="yellow">Alamat</th>
-                          <th rowspan="1" bgcolor="yellowgreen">Jumlah</th>
-                          <th colspan="1" bgcolor="yellow">Kode</th>
-                      </tr>  
-                    </table>
-                  </div>
-                </div>
+            <div class="page-header">
+                <h1>Beranda</h1>
+                <small>Home / Beranda</small>
+            </div>
+            
+            <div class="page-content">
+            
+                <div class="analytics">
+
+                    <div class="card">
+                        <div class="card-head">
+                            <h4><?php echo $row[0]; ?></h4>
+                            <span class="las la-user-friends"></span>
+                        </div>
+                        <div class="card-progress">
+                            <small>Total Akun</small>
+                            <div class="card-indicator">
+                                <div class="indicator one" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-head">
+                            <h4>Rp <?php echo number_format($row2[0], 0, ',', '.'); ?></h4>
+                            <span class="fas fa-money-bill-wave income-icon"></span>
+                        </div>
+                        <div class="card-progress">
+                            <small>Total Pendapatan</small>
+                            <div class="card-indicator">
+                                <div class="indicator two" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-head">
+                            <h4><?php echo $row3[0]; ?></h4>
+                            <span class="las la-shopping-cart"></span>
+                        </div>
+                        <div class="card-progress">
+                            <small>Total Terjual</small>
+                            <div class="card-indicator">
+                                <div class="indicator three" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-head">
+                            <h4><?php echo $row4[0]; ?></h4>
+                            <span class="las la-envelope"></span>
+                        </div>
+                        <div class="card-progress">
+                            <small>Total Barang belum dikirim</small>
+                            <div class="card-indicator">
+                                <div class="indicator four" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+              </div>
             </div>
         </div>
       </body>
-<script>
-		// Mendapatkan referensi ke elemen form
-const form = document.querySelector('form');
-
-// Mendapatkan referensi ke elemen tabel
-const tabel = document.querySelector('#tabel');
-
-// Mendapatkan data dari localStorage (jika tersedia) atau menginisialisasi data kosong
-let data = JSON.parse(localStorage.getItem('data')) || [];
-
-// Fungsi untuk menampilkan data ke dalam tabel
-function tampilkanData() {
-  // Menghapus semua baris di tabel kecuali header
-  while (tabel.rows.length > 1) {
-    tabel.deleteRow(1);
-  }
-
-  // Menambahkan setiap data ke dalam tabel
-  for (let i = 0; i < data.length; i++) {
-    const row = tabel.insertRow();
-
-    const namaCell = row.insertCell();
-    namaCell.textContent = data[i].aa;
-
-    const lokasiCell = row.insertCell();
-    lokasiCell.textContent = data[i].ba;
-
-    const penyelenggaraCell = row.insertCell();
-    penyelenggaraCell.textContent = data[i].ca;
-
-    const deskripsiCell = row.insertCell();
-    deskripsiCell.textContent = data[i].da;
-
-  
-
-  
-  }
-}
-
-// Fungsi untuk menambahkan data ke dalam tabel dan localStorage
-function tambahData() {
-  const aa = form.elements.aa.value;
-  const ba = form.elements.ba.value;
-  const ca = form.elements.ca.value;
-  const da = form.elements.da.value;
-
-
-  // Mengecek apakah data yang ingin ditambahkan sudah ada di dalam array `data`
-  const isDuplicate = data.some((item) => {
-    return item.aa === aa && item.ba === ba && item.ca === ca && item.da === da;
-  });
-
-  // Jika data sudah ada, tampilkan pesan kesalahan dan keluar dari fungsi
-  if (isDuplicate) {
-  
-    return;
-  }
-
-  const newData = {
-    aa: aa,
-    ba: ba,
-    ca: ca,
-    da: da,
-   
-  };
-
-  data.push(newData);
-  localStorage.setItem('data', JSON.stringify(data));
-  tampilkanData();
-}
-
-
-// Fungsi untuk mengedit data di dalam tabel dan localStorage
-function editData(index) {
-  const newData = {
-    aa: prompt('Masukkan nomor:', data[index].aa),
-    ba: prompt('Masukkan nama:', data[index].ba),
-    ca: prompt('Masukkan gender:', data[index].ca),
-    da: prompt('Masukkan agama:', data[index].da)
-
-  };
-
-  data[index] = newData;
-  localStorage.setItem('data', JSON.stringify(data));
-  tampilkanData();
-}
-
-// Fungsi untuk menghapus data dari tabel dan localStorage
-function hapusData(index) {
-  data.splice(index, 1);
-  localStorage.setItem('data', JSON.stringify(data));
-  tampilkanData();
-}
-
-// Menampilkan data pertama kali
-tampilkanData();
-
-// Event listener untuk form submit
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  const aa = form.elements.aa.value;
-  const ba = form.elements.ba.value;
-  const ca = form.elements.ca.value;
-const da = form.elements.da.value;
-
-
-// Memanggil fungsi tambahData dengan parameter yang sesuai
-tambahData(aa, ba, ca, da);
-
-// Mereset nilai input pada form
-form.reset();
-});
-
-
-
-
-
-		</script>
-      <script>
-		// Mendapatkan referensi ke elemen form
-const form = document.querySelector('form');
-
-// Mendapatkan referensi ke elemen tabel
-const tabel = document.querySelector('#tb');
-
-// Mendapatkan data dari localStorage (jika tersedia) atau menginisialisasi data kosong
-let data = JSON.parse(localStorage.getItem('data')) || [];
-
-// Fungsi untuk menampilkan data ke dalam tabel
-function tampilkanData() {
-  // Menghapus semua baris di tabel kecuali header
-  while (tabel.rows.length > 1) {
-    tabel.deleteRow(1);
-  }
-
-  // Menambahkan setiap data ke dalam tabel
-  for (let i = 0; i < data.length; i++) {
-    const row = tabel.insertRow();
-
-    const namaCell = row.insertCell();
-    namaCell.textContent = data[i].a;
-
-    const lokasiCell = row.insertCell();
-    lokasiCell.textContent = data[i].b;
-
-    const penyelenggaraCell = row.insertCell();
-    penyelenggaraCell.textContent = data[i].c;
-
-    const deskripsiCell = row.insertCell();
-    deskripsiCell.textContent = data[i].d;
-
-    const eCell = row.insertCell();
-    eCell.textContent = data[i].e;
-
-    const fCell = row.insertCell();
-    fCell.textContent = data[i].f;
-
-   
-   
-  }
-}
-
-function editData(index) {
-  const newData = {
-    a: prompt('Masukkan nomor:', data[index].a),
-    b: prompt('Masukkan nama:', data[index].b),
-    c: prompt('Masukkan gender:', data[index].c),
-    d: prompt('Masukkan uang:', data[index].d),
-    e: prompt('Masukkan nilai transfer:', data[index].e)
-  };
-
-  // Menentukan pemain yang sesuai dengan nilai transfer
-  let pemain = '';
-  if (parseInt(newData.e) < parseInt(newData.d)) {
-    pemain = 'Thiago';
-  } else if (parseInt(newData.e) === parseInt(newData.d)) {
-    pemain = 'Mo Salah';
-  } else {
-    pemain = 'Van Dijk';
-  }
-
-  // Menyimpan data baru ke dalam array data
-  data[index] = {
-    a: newData.a,
-    b: newData.b,
-    c: newData.c,
-    d: newData.d,
-    e: newData.e,
-    f: pemain
-  };
-
-  // Menyimpan data ke dalam local storage
-  localStorage.setItem('data', JSON.stringify(data));
-
-  // Menampilkan data ke dalam tabel
-  tampilkanData();
-}
-
-
-function tambahData() {
-  const a = form.elements.a.value;
-  const b = form.elements.b.value;
-  const c = form.elements.c.value;
-  const d = form.elements.d.value;
-  const e = form.elements.e.value;
-  
-
-  let f = "";
-  if (e < d) {
-    f = "Thiago";
-  } else if (e == d) {
-    f = "Mo Salah";
-  } else {
-    f = "Van Dijk";
-  }
-
-  // Mengecek apakah data yang ingin ditambahkan sudah ada di dalam array `data`
-  const isDuplicate = data.some((item) => {
-    return item.a === a && item.b === b && item.c === c && item.d === d && item.e === e && item.f === f;
-  });
-
-  // Jika data sudah ada, tampilkan pesan kesalahan dan keluar dari fungsi
-  if (isDuplicate) {
-    return;
-  }
-
-  const newData = {
-    a: a,
-    b: b,
-    c: c,
-    d: d,
-    e: e,
-    f: f
-  };
-
-  data.push(newData);
-  localStorage.setItem('data', JSON.stringify(data));
-  tampilkanData();
-}
-
-
-// Fungsi untuk mengedit data di dalam tabel dan localStorage
-
-// Fungsi untuk menghapus data dari tabel dan localStorage
-function hapusData(index) {
-  data.splice(index, 1);
-  localStorage.setItem('data', JSON.stringify(data));
-  tampilkanData();
-}
-
-// Menampilkan data pertama kali
-tampilkanData();
-
-// Event listener untuk form submit
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  const a = form.elements.a.value;
-  const b = form.elements.b.value;
-  const c = form.elements.c.value;
-const d = form.elements.d.value;
-
-
-
-// Memanggil fungsi tambahData dengan parameter yang sesuai
-tambahData(a, b, c, d);
-
-// Mereset nilai input pada form
-form.reset();
-});
-
-
-
-
-
-		</script>
-        <footer>
+      <footer>
           <div class="foot">
               <img src="../asset/gambar/Ud Haderah.png" width="150px">
               <p> Hak Cipta © 2023 - Kelompok 3 C1</p>

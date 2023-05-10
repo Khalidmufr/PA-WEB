@@ -13,41 +13,60 @@ if ($_SESSION['role'] !== 'admin') {
     header('Location: ../index.php');
     exit();
   } 
+
+  $id = $_GET['id'];
+
+  $query = "SELECT * FROM mobil WHERE id_mobil = '$id'";
+  $result = mysqli_query($koneksi, $query);
+  $row = mysqli_fetch_array($result) ;
+
   
-  if(isset($_POST["hapus"])) {
-    $id_pembelian = $_POST['hapus'];    
-    $query = "DELETE FROM pembelian WHERE id_pembelian = '$id_pembelian';";
-    // Menjalankan query
-    if (mysqli_query($koneksi, $query)) {
-      echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-        <strong>Berhasil Menghapus Pengiriman !</strong>
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-      </div>";
-    } else {
-      "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <strong>Gagal Menghapus !</strong>
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>";      
-    } 
-    }
+  if(isset($_POST["edit"])) {      
+      $id = $_GET["id"];
+      $merk = $_POST["merk"];           
+      $plat = $_POST["plat"];           
+      $query ="UPDATE mobil SET
+                  merk = '$merk',   
+                  plat = '$plat'                  
+                  WHERE id_mobil = '$id' ";
+      $cari_nama = "SELECT * FROM mobil WHERE plat='$plat' AND id_mobil!='$id'";
+      $valid = mysqli_query($koneksi,$cari_nama);      
+  
+      if(mysqli_num_rows($valid) > 0){
+          echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                  <strong>Gagal Mengubah !</strong> Plat tidak boleh duplikat
+                  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>";                            
+      } else {
+          echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+          <strong>Berhasil Mengubah !</strong>
+          <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";
+        echo "<script>
+        alert('Berhasil Mengubah');
+          document.location.href ='mobil.php';
+          </script>"; 
+          mysqli_query($koneksi, $query);
+      }       
+  }
+  
   ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">    
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">  
-        <title>Pembelian</title>
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Edit Supir</title>
         <link rel="icon" href="../asset/gambar/Ud Haderah.png">
-        <!-- Core theme CSS (includes Bootstrap)-->        
+        <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="style-login.css" rel="stylesheet" />
-        <link rel="stylesheet" href="css/produkstyls.css">
-
 
     </head>
     <style>
@@ -69,14 +88,17 @@ if ($_SESSION['role'] !== 'admin') {
             <div id="sidebar-wrapper">
                 <div class="sidebar-heading">Admin</div>
                 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-                    
+                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <img src="../asset/gambar/Ud Haderah.png" class="bi me-2" width="250" height="50">
+                    </a>
+                    <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                       <li>
                       <a href="index.php" class="nav-link text-white">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
                           Beranda
                         </a>
-                      </li>
+                      </li> 
                       <li>
                         <a href="produk.php" class="nav-link text-white">
                           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
@@ -117,61 +139,37 @@ if ($_SESSION['role'] !== 'admin') {
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
-                <div class="Isi">  
-                  <br>                
-                  <hr>
-                    <h1 class="text-center">Tabel Pembelian</h1>
-                    <hr>
+                <div class="Isi">
+                <br>
+                  <a href="mobil.php" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+                  <h1 class="text-center">Edit Mobil</h1>
+                <form enctype="multipart/form-data" method="POST"> 
+                  <div class="form-group">
                     <br>
-                    <table id="tabel" class="table table-hover" border="2" cellspacing="0" width="100%">
-                        <tr>
-                          <th rowspan="1" bgcolor="yellowgreen">id_Pembelian</th>
-                          <th rowspan="1" bgcolor="yellow">Produk</th>
-                          <th rowspan="1" bgcolor="yellowgreen">Mama</th>
-                          <th rowspan="1" bgcolor="yellow">Nomor</th>
-                          <th rowspan="1" bgcolor="yellowgreen">Alamat</th>
-                          <th colspan="1" bgcolor="yellow">Jumlah</th>
-                          <th colspan="1" bgcolor="yellow">Subtotal</th>
-                          <th colspan="1" bgcolor="yellow">Status</th>
-                          <th colspan="1" bgcolor="yellow">Aksi</th>
-                        </tr>  
-
-                        <form method="post">
-            <?php 
-            include "../koneksi.php" ;
-            $query = "SELECT * FROM pembelian 
-            JOIN produk ON pembelian.id_produk = produk.id_produk
-            JOIN login ON pembelian.id_login = login.Id_login;";
-            
-            $data = mysqli_query($koneksi,$query) ;
-            while ($row = mysqli_fetch_array($data)) {
-            $subtotal = $row['subtotal'];
-            ?>                          
-              <tr>
-                <td><?php echo $row['id_pembelian'] ; ?></td>                     
-                <td><?php echo $row['nama_produk'] ; ?></td>                     
-                <td><?php echo $row['nama'] ; ?></td>                     
-                <td><?php echo $row['nomor'] ; ?></td>                     
-                <td><?php echo $row['alamat'] ; ?></td>                     
-                <td><?php echo $row['jumlah'] ; ?></td>                     
-                <td><?php echo number_format($subtotal, 0, ',', '.'); ?></td>                     
-                <td><?php echo $row['status'] ; ?></td>                     
-                <td><button  class="btn btn-sm btn-danger" type="submit" name="hapus" value="<?php echo $row["id_pembelian"] ?>"><i class="fas fa-trash"></i> Hapus</button></td>                     
-              </tr>
+                    <label for="nama">Merk: </label>
+                    <input type="text" class="form-control" pattern="[a-zA-Z0-9]{4,}" maxlength="30" placeholder="Masukkan merk" name="merk" value="<?php echo $row['merk']?>" required>
+                  </div>                  
+                  <div class="form-group">
+                    <br>
+                    <label for="plat">Plat: </label>
+                    <input type="text" class="form-control" maxlength="30" placeholder="Masukkan plat" name="plat" value="<?php echo $row['plat']?>" required>
+                  </div>                  
+                  <br>
+                  <input type="submit" value="Simpan Perubahan" name="edit" class="btn btn-primary" cursorshover="true">
+                  </form>
+                  </div>
               
-            <?php } ?>
-            </form>
-                    </table>
                 </div>
                 </div>
             </div>
         </div>
-      <footer>
+        <footer>
           <div class="foot">
               <img src="../asset/gambar/Ud Haderah.png" width="150px">
               <p> Hak Cipta © 2023 - Kelompok 3 C1</p>
           </div>
-      </footer>       
+      </footer>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <!-- Core theme JS-->

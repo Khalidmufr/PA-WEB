@@ -18,7 +18,10 @@
     } else {
         // Jika keranjang belanja belum ada, tampilkan pesan kosong
         $cart_items = array();
-        echo '<p>Keranjang belanja kosong</p>';
+        echo "<script>
+        alert('Keranjang Belanja anda kosong');
+        document.location.href ='produk.php'
+        </script>"; 
     }
 
     // Periksa apakah tombol hapus diklik
@@ -55,14 +58,16 @@
     } else {
         $kode=1;
     }
+    $nama = $_SESSION['nama'];
 
     if(isset($_POST['submit'])) {
-        $nama = $_SESSION['nama'];
         $query = "SELECT id_login FROM login where nama = '$nama'";
         // Eksekusi query dan ambil hasilnya
         $result = mysqli_query($koneksi, $query);
         $isi = mysqli_fetch_assoc($result);
         $id_user = $isi['id_login'];
+        $nm = $isi['nama'];
+        $status = "Belum dikirim";
         // Loop melalui array dan masukkan data ke dalam tabel database
         foreach ($cart_items as $item) {
             $harga = $item['harga'];
@@ -70,17 +75,22 @@
             $nomor = $item['nomor'];
             $alamat = $item['alamat'];
             $jumlah = $item['jumlah'];
+            $stok_sekarang = $item['stok'];
+            $stok_baru = $stok_sekarang - $jumlah;
+            $sql = "UPDATE produk SET stok = '$stok_baru' WHERE id_produk = '$id_produk'";
             $subtotal = $harga * $jumlah;
-            $query = "INSERT INTO pembelian (id_produk, id_login,nomor,alamat,jumlah,subtotal,kode) VALUES ('$id_produk', '$id_user','$nomor','$alamat','$jumlah','$subtotal','$kode')";
+            $query = "INSERT INTO pembelian (id_produk, id_login,nomor,alamat,jumlah,subtotal,status,kode) VALUES ('$id_produk', '$id_user','$nomor','$alamat','$jumlah','$subtotal','$status','$kode')";
             mysqli_query($koneksi, $query);
+            mysqli_query($koneksi, $sql);
         }
         
         // Tutup koneksi session
-        session_destroy();
+        // session_destroy();
+        unset($_SESSION['cart']);  
 
         echo "<script>
         alert('Berhasil Melakukan Pembelian');
-        document.location.href ='checkout.php'
+        document.location.href ='produk.php'
         </script>";    
     }
 ?>
@@ -184,7 +194,7 @@
                         <li><a href="produk.php">Produk</a></li>
                         <li><a href="keluhan.php">Keluhan</a></li>
                         <li><a href="lokasi.php">Lokasi</a></li>
-                        <li class="keranjang"><a href="checkout.php"><span><h1></h1><i class="fa-solid fa-cart-shopping"></i></span></a></li>
+                        <li class="keranjang garis"><a href="checkout.php"><span><h1></h1><i class="fa-solid fa-cart-shopping"></i></span></a></li>
                         <li class="dropdown">
                             <a href="javascript:void{0}" class="dropbtn"><img src="../asset/gambar/k.jpg" alt=""></a>
                             <div class="dropcontent">

@@ -120,19 +120,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
             <div class="boxproduk">
                 <div class="card">            
                     <h5><?php echo $row['nama_produk'] ; ?></h5>
-                    <img src="../file/<?php echo $row['gambar'] ; ?>">
+                    <img src="../file/<?php echo $row['gambar'] ; ?>">                    
+                    <p><br> Rp <?php echo number_format($row['harga'], 0, ',', '.')  ; ?>/ Batang</p>
+                    <p>Stok Tersedia : <?php echo $row['stok'] ; ?></p>
                     <a href="pembelian.php?id=<?php echo $row['id_produk'] ; ?>"><button>Lihat Produk</button></a>
                 </div>                    
             </div>
             <?php } ?>           
         </div>
     </div>
+</div>  
 </div>
-
+    
+</div>
+</div>
 <footer>
     <p>Hak Cipta © 2023 - Kelompok 3 C1</p>
 </footer>
-<script src="js/beranda.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>AOS.init();</script>
 </body>

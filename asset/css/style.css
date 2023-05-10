@@ -281,13 +281,14 @@ h5{
 
 
 .produk{
-    width: 100%;    
+    width: 100%;   
+    /* margin: 50px 150px 150px 500px; */
     margin-top: 50px;
     margin-bottom: 500px;
 }
 .boxproduk{
     width: 240px;
-    height: 280px;
+    height: 335px;
     background-color: #fff;
     text-align: center;
     padding: 30px 30px;
@@ -306,9 +307,10 @@ h5{
     margin-top:30px ;
 }
 .produk img{
-    width: 80%;
+    width: 192px;
     border-radius: 5px;
     margin-top: 10px;
+    height: 132px;
 }
 .boxproduk button{
     margin-top: 30px;
@@ -326,46 +328,50 @@ h5{
     background-color: white;
 }
 .konten-produk{
-    width: 1130px;
-    max-width: 95%;
+    width: 1000px;
+    max-width: 100%;
     margin: 0 auto;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    /* box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; */
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-
 }
 .konten-produk:hover{
     transition: 0.5s;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 .konten-produk img{
-    height: auto;
-    width: 470px;
-    border-radius: 10px;
+    height: 150px;
+    width: 300px;
 }
 .isi-teks{
     width: 550px;
+    margin-top: 20px;
 }
 .isi-teks h2{
     color: black;
-    font-size: 30px;
+    font-size: 25px;
     text-transform: capitalize;
-    margin-bottom: 20px;
-    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    /* border-bottom: 1px solid black; */
 }
 .isi-teks p{
     letter-spacing: 1px;
     line-height: 25px;
     font-size: 17px;
-    margin-bottom:45px;
+    margin-bottom:5px;
     text-align: justify;
 }
 .harga{
-    font-size: 25px;
-    margin: 10px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: 600;
+    margin-left: 380px;
 }
 
 .lokasi{
@@ -481,6 +487,7 @@ footer{
     justify-content: center;
     display: flex;
     flex-direction: column;
+    bottom: 0;
 }
 /* .footer .container{
 	max-width: 1170px;
