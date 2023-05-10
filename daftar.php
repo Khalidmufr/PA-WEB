@@ -94,7 +94,7 @@ if(isset($_POST['submit'])){
                     <div class="btn-field">
                         <button type="submit" name="submit" class="btn btn-lg btn-success">Daftar</button>
                     </div>                                
-                    <p>Sudah punya akun ? <a href="index.php">Masuk</a></p>
+                    <p>Sudah punya akun ? <a href="login.php">Masuk</a></p>
                     </form>
                 </div>
                 <div class="kanan">

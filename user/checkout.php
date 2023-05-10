@@ -2,13 +2,13 @@
     session_start(); // Mulai session
 
     if ($_SESSION['role'] !== 'user') {
-        header('Location: ../index.php');
+        header('Location: ../login.php');
         exit();
       }
       
       if (isset($_GET['logout'])) {
         session_destroy();
-        header('Location: ../index.php');
+        header('Location: ../login.php');
         exit();
       }
 
