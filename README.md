@@ -154,7 +154,7 @@ Dalam contoh di atas, ketiga use case saling terkait dan membentuk end-to-end us
 
 - lalu membuka login untuk melihat halaman sesuai role
 
-![WhatsApp Image 2023-05-10 at 21 36 35](https://github.com/romyhakimwardana/PA-WEB/assets/120180482/a15e9c50-b8bb-49c6-aa74-dea3964d676b
+![WhatsApp Image 2023-05-10 at 21 36 35](https://github.com/romyhakimwardana/PA-WEB/assets/120180482/a15e9c50-b8bb-49c6-aa74-dea3964d676b)
 
 ![WhatsApp Image 2023-05-10 at 21 36 36](https://github.com/romyhakimwardana/PA-WEB/assets/120180482/37567608-70d3-4236-bcc6-db7e12d4a19c)
 
@@ -167,7 +167,7 @@ Dalam contoh di atas, ketiga use case saling terkait dan membentuk end-to-end us
 
 - apabila melakukan login sesuai role yaitu admin maka akan masuk ke halaman admin
 
-![Admin](https://github.com/romyhakimwardana/gambar-gratis-2023/assets/120180482/1fd318cd-e3c9-45d4-98d7-97a0112233db)
+![WhatsApp Image 2023-05-10 at 21 13 09](https://github.com/romyhakimwardana/PA-WEB/assets/120180482/14cf8208-d1d0-4333-85b0-7efa67a57156)
     
 **3. Halaman Admin**
 
