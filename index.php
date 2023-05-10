@@ -74,7 +74,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
     <link rel="stylesheet" href="asset/css/login.css">
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="icon" href="../asset/gambar/Ud Haderah.png">   
+    <link rel="icon" href="asset/gambar/Ud Haderah.png">   
     <title>login</title>
 </head>
 <body>
