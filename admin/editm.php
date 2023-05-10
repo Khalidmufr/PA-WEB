@@ -4,13 +4,13 @@ require "../koneksi.php";
   session_start()  ;
 
 if ($_SESSION['role'] !== 'admin') {
-    header('Location: ../index.php');
+    header('Location: ../login.php');
     exit();
   }
   
   if (isset($_GET['logout'])) {
     session_destroy();
-    header('Location: ../index.php');
+    header('Location: ../login.php');
     exit();
   } 
 

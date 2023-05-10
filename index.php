@@ -1,65 +1,10 @@
 <?php
-session_start();
-require "koneksi.php";
 
-if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role'])) {
-    $username = mysqli_real_escape_string($koneksi, $_POST['username']);
-    $password = mysqli_real_escape_string($koneksi, $_POST['password']);
-    $role = mysqli_real_escape_string($koneksi, $_POST['role']);
-    if ($role == 'admin') {
-        $query = "SELECT * FROM login WHERE username='$username' AND password='$password' AND role='$role'";
-        $result = mysqli_query($koneksi, $query);
-        if (mysqli_num_rows($result) == 1) {
-            $_SESSION['role'] = $role;
-            $_SESSION['username'] = $username;
-            $row = mysqli_fetch_assoc($result);
-            $_SESSION['nama'] = $row['nama'];
-            header("location: admin/index.php");
-        } else {
-            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <strong>Gagal Login !</strong> Periksa kembali username dan password atau role anda.
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-              </div>";
-            // echo "<script>
-            //     alert('Username dan password salah.');
-            // </script>";
-        }
-    } else if ($role == 'staff') {
-        $query = "SELECT * FROM login WHERE username='$username' AND password='$password' AND role='$role'";
-        $result = mysqli_query($koneksi, $query);
-        if (mysqli_num_rows($result) == 1) {
-            $_SESSION['role'] = $role;
-            $_SESSION['username'] = $username;
-			$row = mysqli_fetch_assoc($result);
-            $_SESSION['nama'] = $row['nama'];
-            header("location: staff/index.php");
-        } else {
-            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <strong>Gagal Login !</strong> Periksa kembali username dan password atau role anda.
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-              </div>";
-        }
-    } else if ($role == 'user') {
-        $query = "SELECT * FROM login WHERE username='$username' AND password='$password' AND role='$role'";
-        $result = mysqli_query($koneksi, $query);
-        if (mysqli_num_rows($result) == 1) {
-            $_SESSION['role'] = $role;
-            $_SESSION['username'] = $username;
-			$row = mysqli_fetch_assoc($result);
-            $_SESSION['nama'] = $row['nama'];
-            header("location: user/beranda.php");
-        } else {
-            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <strong>Gagal Login !</strong> Periksa kembali username dan password atau role anda.
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-              </div>";
-        }
-    } else {
-        echo "Role tidak valid!";
-    }
-}
-// mysqli_close($koneksi);
-?>
+require "koneksi.php";
+  session_start()  ;
+  
+  ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,59 +13,87 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">  
-    <link rel="stylesheet" href="asset/css/login.css">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <link rel="icon" href="asset/gambar/Ud Haderah.png">
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="icon" href="asset/gambar/Ud Haderah.png">   
-    <title>login</title>
+    <title>Beranda</title>
 </head>
 <body>
-    <div class="container">        
-        <div class="box" data-aos="fade-up" data-aos-duration="1500"> 
-            <h1>Masuk</h1>               
-            <section class="login">            
-            <div class="kiri">
-                <img src="asset/gambar/login.svg" alt="">
-            </div>
-                <div class="kanan">
-                    <form role="form" action="index.php" method="post">
-                        <div class="inputan">                            
-                            <label>Username <span class="text-danger">*</span></label>
-                            <div class="kolominput">
-                                <i class="fa-solid fa-user"></i>
-                                <input type="text" id="username" name="username" placeholder="Enter username" autocomplete="off" required>
-                            </div>
-                            <label>Password <span class="text-danger">*</span></label>
-                            <div class="kolominput">
-                                <i class="fa-solid fa-lock"></i>
-                                <input type="password" id="password" name="password" placeholder="Enter password" required>
-                            </div>        
-                            <div class="form-group">                    
-                            <label>Role <span class="text-danger">*</span></label>
-                            <select aria-label="Default select example" name="role">
-                                <option value="admin">Admin</option>
-                                <option value="staff">Staff</option>
-                                <option value="user">User</option>
-                            </select>
-                        </div>                     
-                    </div>
-                    <div class="btn-field">
-                        <button type="submit" name="submit" class="btn btn-lg btn-success">Masuk</button>
-                    </div>                                
-                    <p>Belum punya akun ? <a href="daftar.php">Daftar</a></p>
-                    </form>
+<div class="container">
+    <header>
+        <label class="logo"><img src="asset/gambar/Ud Haderah.png"></label>
+            <nav>
+                <ul class="navbar">                    
+                    <li><a href="login.php">Login</a></li>                                        
+                </ul>
+            </nav>
+    </header>  
+    <section class="main">        
+        <div class="teks" data-aos="zoom-in-right" data-aos-duration="1500">
+            <h1>Liveransir Bahan-bahan Bangunan Kayu </h1>                
+            <button><a href="login.php">Lihat Selengkapnya</a></button>
+        </div>
+        <div class="konten" data-aos="zoom-in-left" data-aos-duration="1500">
+            <img src="asset/gambar/construction.svg">
+        </div>
+    </section>
+<div class="konten2" data-aos="fade-up" data-aos-duration="1500">
+    <div class="service">
+        <div class="box">
+            <h1>Pelayanan</h1>
+                <div class="boxkotak">
+                    <div class="card">
+                        <i class="fa-solid fa-money-check-dollar"></i>
+                        <h5>Harga Terjangkau</h5>
+                        <p>Dapatkan kualitas bahan terbaik dengan harga yang cukup terjangkau</p>                        
+                    </div>                    
+                </div>            
+                <div class="boxkotak">
+                    <div class="card">
+                        <i class="fa-solid fa-truck"></i>
+                        <h5>Gratis Ongkir</h5>
+                        <p>Gratis ongkir bagi anda yang membeli produk kami dalam jumlah yang banyak<p>                        
+                    </div>                    
+                </div>            
+                <div class="boxkotak">
+                    <div class="card">
+                        <i class="fa-solid fa-users"></i>
+                        <h5>Pelayanan Ramah</h5>
+                        <p>Pelayanan yang ramah memprioritaskan pelanggan dalam setiap pembelian </p>                        
+                    </div>                    
                 </div>
-                </section>
-                </div>
-
             </div>
         </div>
-    </body>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>AOS.init();</script>
-    <!-- load Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </div>
+
+<div class="konten3"data-aos="fade-up" data-aos-duration="1500">
+    <h1>Galeri</h1>
+    <div class="isi3">
+        <div class="slide">
+            <span id="slide1"></span>
+            <span id="slide2"></span>
+            <span id="slide3"></span>
+            
+            <div class="carosel">
+                <img src="asset/gambar/kayu.jpg" alt="">
+                <img src="asset/gambar/kayu 2.jpg" alt="">
+                <img src="asset/gambar/Kayu-Bengkirai.jpg" alt=""> 
+            </div>             
+        </div>
+        <div class="navigasi">
+            <a href="#slide1">1</a>
+                <a href="#slide2">2</a>
+                <a href="#slide3">3</a>                
+        </div>  
+    </div>   
+</div>
+
+</div>
+<footer>
+    <p>Hak Cipta © 2023 - Kelompok 3 C1</p>
+</footer>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>AOS.init();</script>
+</body>
 </html>
