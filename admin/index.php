@@ -12,7 +12,26 @@ if ($_SESSION['role'] !== 'admin') {
     session_destroy();
     header('Location: ../index.php');
     exit();
-  } ?>
+  } 
+  
+  
+  $query = "SELECT COUNT(*) FROM login;";
+  $result = mysqli_query($koneksi, $query);
+  $row = mysqli_fetch_array($result);
+  
+  $query2 = "SELECT sum(subtotal) FROM pembelian WHERE status = 'Sudah Terkirim';" ;
+  $result2 = mysqli_query($koneksi, $query2);
+  $row2 = mysqli_fetch_array($result2);
+  
+  $query3 = "SELECT count(*) FROM pembelian WHERE status = 'Sudah Terkirim';";
+  $result3 = mysqli_query($koneksi, $query3);
+  $row3 = mysqli_fetch_array($result3);
+
+  $query4 = "SELECT count(*) FROM pembelian WHERE status = 'Belum dikirim';";
+  $result4 = mysqli_query($koneksi, $query4);
+  $row4 = mysqli_fetch_array($result4);
+
+  ?>
   
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +44,13 @@ if ($_SESSION['role'] !== 'admin') {
         <link rel="icon" href="../asset/gambar/Ud Haderah.png">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="style-login.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">    
+      <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+
     </head>
     <style>
         .navbar {
@@ -44,11 +70,7 @@ if ($_SESSION['role'] !== 'admin') {
             <!-- Sidebar-->
             <div id="sidebar-wrapper">
                 <div class="sidebar-heading">Admin</div>
-                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                      <img src="../asset/gambar/Ud Haderah.png" class="bi me-2" width="250" height="50">
-                    </a>
-                    <hr>
+                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">                   
                     <ul class="nav nav-pills flex-column mb-auto">
                       <li>
                 
@@ -93,9 +115,67 @@ if ($_SESSION['role'] !== 'admin') {
                     </div>
                 </nav>
                 <!-- Page content-->
-                <div class="isi">
-                  <h1>Selamat Datang Admin</h1>                                  
-                </div>
+            <div class="page-header">
+                <h1>Beranda</h1>
+                <small>Home / Beranda</small>
+            </div>
+            
+            <div class="page-content">
+            
+                <div class="analytics">
+
+                    <div class="card">
+                        <div class="card-head">
+                            <h4><?php echo $row[0]; ?></h4>
+                            <span class="las la-user-friends"></span>
+                        </div>
+                        <div class="card-progress">
+                            <small>Total Akun</small>
+                            <div class="card-indicator">
+                                <div class="indicator one" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-head">
+                            <h4>Rp <?php echo number_format($row2[0], 0, ',', '.'); ?></h4>
+                            <span class="fas fa-money-bill-wave income-icon"></span>
+                        </div>
+                        <div class="card-progress">
+                            <small>Total Pendapatan</small>
+                            <div class="card-indicator">
+                                <div class="indicator two" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-head">
+                            <h4><?php echo $row3[0]; ?></h4>
+                            <span class="las la-shopping-cart"></span>
+                        </div>
+                        <div class="card-progress">
+                            <small>Total Terjual</small>
+                            <div class="card-indicator">
+                                <div class="indicator three" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-head">
+                            <h4><?php echo $row4[0]; ?></h4>
+                            <span class="las la-envelope"></span>
+                        </div>
+                        <div class="card-progress">
+                            <small>Total Barang belum dikirim</small>
+                            <div class="card-indicator">
+                                <div class="indicator four" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
               </div>
             </div>
         </div>

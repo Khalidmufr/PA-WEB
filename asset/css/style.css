@@ -288,7 +288,7 @@ h5{
 }
 .boxproduk{
     width: 240px;
-    height: 280px;
+    height: 335px;
     background-color: #fff;
     text-align: center;
     padding: 30px 30px;
@@ -307,9 +307,10 @@ h5{
     margin-top:30px ;
 }
 .produk img{
-    width: 80%;
+    width: 192px;
     border-radius: 5px;
     margin-top: 10px;
+    height: 132px;
 }
 .boxproduk button{
     margin-top: 30px;
@@ -348,6 +349,7 @@ h5{
 }
 .isi-teks{
     width: 550px;
+    margin-top: 20px;
 }
 .isi-teks h2{
     color: black;
@@ -369,7 +371,7 @@ h5{
     margin-bottom: 20px;
     margin-top: 20px;
     font-weight: 600;
-    margin-left: 150px;
+    margin-left: 380px;
 }
 
 .lokasi{
@@ -485,6 +487,7 @@ footer{
     justify-content: center;
     display: flex;
     flex-direction: column;
+    bottom: 0;
 }
 /* .footer .container{
 	max-width: 1170px;

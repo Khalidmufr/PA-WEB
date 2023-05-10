@@ -83,7 +83,7 @@ if ($_SESSION['role'] !== 'user') {
             ?>
                     <img src="../file/<?php echo $row['gambar'] ; ?>">
                     <div class="isi-teks">
-                        <h2>Produk : <?php echo $row['nama_produk'] ; ?></h2>
+                        <p>Produk : <?php echo $row['nama_produk'] ; ?></p>
                         <p>Alamat : <?php echo $row['alamat']; ?></p>                
                         <p>Nomor : <?php echo $row['nomor']; ?></p>                
                         <p>Harga : Rp <?php echo number_format($harga, 0, ',', '.'); ?></p>                
@@ -94,7 +94,6 @@ if ($_SESSION['role'] !== 'user') {
                     </div> 
                     <?php } ?>
                     <div class="harga">Total Pembayaran : Rp <?php echo number_format($total, 0, ',', '.');  ?></div>
-                    <!-- <a href="#"><button>Lihat Pesanan</button></a> -->
                 </div>      
                 <?php } ?>
             </div>
