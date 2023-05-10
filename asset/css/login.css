@@ -1,3 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: "Montserrat";
+}
+
 body {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -5,7 +12,9 @@ body {
     }
 
     label{
-        font-weight: 600;
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 10px;
     }
     .login-panel {
         margin-top: 0px;
@@ -49,4 +58,93 @@ body {
         background-color: #449d44;
         border-color: #398439;
         box-shadow: none;
+    }
+
+    .box{
+        margin: 50px 200px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    }
+    .box h1{
+        font-size: 50px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .box img{
+        width: 300px;
+        margin-bottom: 50px;
+    }
+    .kolominput{
+        background: #fff;
+        border: solid 1px #eaeaea;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-height: 3rem;
+        overflow: hidden;
+    }
+    input{
+        width: 100%;
+        background: white;
+        border: 0;
+        outline: 0;
+        padding: 18px ;
+        padding-right: 80px;
+    }
+    select{
+        width: 100%;
+        background: white;
+        border: 0;
+        outline: 0;
+        padding: 12px 30px;
+    }
+    .kolominput i{
+        margin-left: 15px;
+        color: #999;
+    }
+    form p{
+        text-align: left;
+        font-size: 16px;    
+    }
+    form p a{
+        text-decoration: none;    
+        color: chocolate;
+    }
+    .btn-field{
+        margin-bottom: 5px;
+    }
+    .btn-field button{    
+        flex-basis:60% ;
+        background: chocolate;
+        height: 40px;
+        outline: 0;
+        border: 0;    
+        color: #fff;
+        border-radius: 20px;    
+        cursor: pointer;
+        transition: background 1s;
+    }
+    .btn-field button:hover{    
+        background: rgba(210, 105, 30, 0.616);
+    }
+    .inputan{
+        height: 300px;
+    }
+    .login{
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+    }
+    .kiri{
+        margin-right: 50px;
+    }
+    .kanan{
+        margin-left: 50px;
+    }
+    .daftar{
+        display: flex;
+        justify-content: center; 
+        align-items: center;
     }

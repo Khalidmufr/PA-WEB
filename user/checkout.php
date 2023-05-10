@@ -18,7 +18,10 @@
     } else {
         // Jika keranjang belanja belum ada, tampilkan pesan kosong
         $cart_items = array();
-        echo '<p>Keranjang belanja kosong</p>';
+        echo "<script>
+        alert('Keranjang Belanja anda kosong');
+        document.location.href ='produk.php'
+        </script>"; 
     }
 
     // Periksa apakah tombol hapus diklik
@@ -72,9 +75,13 @@
             $nomor = $item['nomor'];
             $alamat = $item['alamat'];
             $jumlah = $item['jumlah'];
+            $stok_sekarang = $item['stok'];
+            $stok_baru = $stok_sekarang - $jumlah;
+            $sql = "UPDATE produk SET stok = '$stok_baru' WHERE id_produk = '$id_produk'";
             $subtotal = $harga * $jumlah;
             $query = "INSERT INTO pembelian (id_produk, id_login,nomor,alamat,jumlah,subtotal,status,kode) VALUES ('$id_produk', '$id_user','$nomor','$alamat','$jumlah','$subtotal','$status','$kode')";
             mysqli_query($koneksi, $query);
+            mysqli_query($koneksi, $sql);
         }
         
         // Tutup koneksi session
@@ -83,7 +90,7 @@
 
         echo "<script>
         alert('Berhasil Melakukan Pembelian');
-        document.location.href ='checkout.php'
+        document.location.href ='produk.php'
         </script>";    
     }
 ?>

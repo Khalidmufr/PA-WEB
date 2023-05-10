@@ -20,6 +20,12 @@
     $query = "SELECT FROM produk WHERE id_produk = '$_GET[id]' ";
     mysqli_query($koneksi, $query)  ;  
 
+    if($row['stok']<1){
+        echo "<script>
+    alert('Stok kurang dari 1');
+    document.location.href ='produk.php';
+    </script>";
+    }
 // Periksa apakah tombol "Tambahkan ke keranjang" telah ditekan
 if (isset($_POST["submit"])) {
     // Dapatkan data produk dari form
@@ -28,6 +34,7 @@ if (isset($_POST["submit"])) {
     $alamat = $_POST['alamat'];
     $jumlah = $_POST['jumlah'];
     $harga = $row['harga'];
+    $stok = $row['stok'];
     
     // Buat item produk dalam format array
     $item = array(
@@ -35,7 +42,8 @@ if (isset($_POST["submit"])) {
         'nomor' => $nomor,
         'alamat' => $alamat,
         'jumlah' => $jumlah,
-        'harga' => $harga        
+        'harga' => $harga , 
+        'stok'   => $stok
     );
     // Periksa apakah keranjang belanja sudah ada dalam session
     if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
@@ -67,7 +75,7 @@ if (isset($_POST["submit"])) {
     $n = 0;
     foreach ($cart_items as $item) {
         $n+=1;
-    }
+    }    
 
     // Redirect ke halaman produk setelah berhasil ditambahkan ke keranjang
     echo "<script>
@@ -156,17 +164,17 @@ if (isset($_POST["submit"])) {
                         <h3><?php echo $row['nama_produk'] ; ?></h3>
                         <div class="input-box">
                             <span class="detail">Nomor Hp</span>
-                            <input type="text" name="nomor" placeholder="Masukkan Nomor Hp Anda" required>
+                            <input type="text" name="nomor" pattern="[0-9]{4,}" maxlength="14" placeholder="Masukkan Nomor Hp Anda" autocomplete="off" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Alamat</span>
-                            <input type="text" name="alamat" placeholder="Masukkan alamat Anda" required>
+                            <input type="text" name="alamat" placeholder="Masukkan alamat Anda" autocomplete="off" required>
                         </div>
                         <div class="jumlah">
                             <p>Jumlah</p>
                             <div class="input-group">
                                 <button class="minus-btn" type="button" name="button">-</button>
-                                <input type="number" id="stok" name="jumlah" value="1" min="1" max="100">
+                                <input type="number" id="stok" name="jumlah" value="1" min="1" max="<?php echo $row['stok'] ; ?>">
                                 <button class="plus-btn" type="button" name="button">+</button>
                             </div>                                          
                         </div>

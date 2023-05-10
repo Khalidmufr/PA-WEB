@@ -19,11 +19,15 @@ if ($_SESSION['role'] !== 'admin') {
     $query = "DELETE FROM pembelian WHERE id_pembelian = '$id_pembelian';";
     // Menjalankan query
     if (mysqli_query($koneksi, $query)) {
-      echo "<script>  alert('Berhasil');
-      </script>";
+      echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+        <strong>Berhasil Menghapus Pengiriman !</strong>
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+      </div>";
     } else {
-      echo "<script>  alert('Gagal');
-      </script>";      
+      "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                <strong>Gagal Menghapus !</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";      
     } 
     }
   ?>
@@ -34,11 +38,16 @@ if ($_SESSION['role'] !== 'admin') {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">  
         <title>Pembelian</title>
         <link rel="icon" href="../asset/gambar/Ud Haderah.png">
-        <!-- Core theme CSS (includes Bootstrap)-->
+        <!-- Core theme CSS (includes Bootstrap)-->        
         <link href="css/styles.css" rel="stylesheet" />
         <link href="style-login.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/produkstyls.css">
+
 
     </head>
     <style>
@@ -60,10 +69,7 @@ if ($_SESSION['role'] !== 'admin') {
             <div id="sidebar-wrapper">
                 <div class="sidebar-heading">Admin</div>
                 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <img src="../asset/gambar/Ud Haderah.png" class="bi me-2" width="250" height="50">
-                    </a>
-                    <hr>
+                    
                     <ul class="nav nav-pills flex-column mb-auto">
                       <li>
                       <a href="index.php" class="nav-link text-white">
@@ -113,7 +119,9 @@ if ($_SESSION['role'] !== 'admin') {
                 <div class="container-fluid">
                 <div class="Isi">  
                   <br>                
+                  <hr>
                     <h1 class="text-center">Tabel Pembelian</h1>
+                    <hr>
                     <br>
                     <table id="tabel" class="table table-hover" border="2" cellspacing="0" width="100%">
                         <tr>
@@ -125,7 +133,6 @@ if ($_SESSION['role'] !== 'admin') {
                           <th colspan="1" bgcolor="yellow">Jumlah</th>
                           <th colspan="1" bgcolor="yellow">Subtotal</th>
                           <th colspan="1" bgcolor="yellow">Status</th>
-                          <th colspan="1" bgcolor="yellow">Kode</th>
                           <th colspan="1" bgcolor="yellow">Aksi</th>
                         </tr>  
 
@@ -149,8 +156,7 @@ if ($_SESSION['role'] !== 'admin') {
                 <td><?php echo $row['jumlah'] ; ?></td>                     
                 <td><?php echo number_format($subtotal, 0, ',', '.'); ?></td>                     
                 <td><?php echo $row['status'] ; ?></td>                     
-                <td><?php echo $row['kode'] ; ?></td>                     
-                <td><button type="submit" name="hapus" value="<?php echo $row["id_pembelian"] ?>">Hapus</button></td>                     
+                <td><button  class="btn btn-sm btn-danger" type="submit" name="hapus" value="<?php echo $row["id_pembelian"] ?>"><i class="fas fa-trash"></i> Hapus</button></td>                     
               </tr>
               
             <?php } ?>
@@ -167,7 +173,7 @@ if ($_SESSION['role'] !== 'admin') {
           </div>
       </footer>       
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
 
