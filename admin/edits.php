@@ -23,7 +23,7 @@ if ($_SESSION['role'] !== 'admin') {
   
   if(isset($_POST["edit"])) {      
       $id = $_GET["id"];
-      $nama_supir = $_POST["nama_supir"];           
+      $nama_supir = mysqli_real_escape_string($koneksi, $_POST['nama_supir']);       
       $query ="UPDATE supir SET
                   nama_supir = '$nama_supir'                  
                   WHERE id_supir = '$id' ";

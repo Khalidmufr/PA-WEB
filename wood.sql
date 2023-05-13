@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2023 at 01:19 PM
+-- Generation Time: May 13, 2023 at 10:53 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `login` (
   `Id_login` int(5) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(8) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `nama` varchar(25) NOT NULL,
   `role` enum('admin','user','staff') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -40,11 +40,9 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`Id_login`, `username`, `password`, `nama`, `role`) VALUES
-(1, 'admin', 'admin', 'rizqq', 'admin'),
-(2, 'user', 'user', 'rizq', 'user'),
-(3, 'staff', 'staff', 'romo', 'staff'),
-(15, '1', '1', '1', 'user'),
-(16, 'khalid', '123', 'khalid', 'user');
+(24, 'admin', '$2y$10$zQUo24GULqb0pA6gkP3CX.EeZLaVDg0PvMHh3gZVUo26qD1FdwnyK', 'admin', 'admin'),
+(25, 'romi', '$2y$10$vcFKjAvN1aStxwTcQLbg1.LZHxNxS1eWOKVrDmyl5iZPjmTPeFhWq', 'romi', 'staff'),
+(26, 'rizq', '$2y$10$NqlXYlwyl7Osm0CaahFFZuAZ22hRgluv0CysFQoCYz.u3cmYAN4Qi', 'rizq', 'user');
 
 -- --------------------------------------------------------
 
@@ -64,8 +62,9 @@ CREATE TABLE `mobil` (
 --
 
 INSERT INTO `mobil` (`id_mobil`, `merk`, `plat`, `id_supir`) VALUES
-(1, 'Traga', 'KT 1440 PU', 7),
-(2, 'L3000', 'KT 144A PK', 6);
+(1, 'Traga', 'KT 1440 PU', NULL),
+(2, 'L3000', 'KT 144A PK', NULL),
+(6, 'Isuzu', 'KT 26 RHW', 15);
 
 -- --------------------------------------------------------
 
@@ -83,6 +82,7 @@ CREATE TABLE `pembelian` (
   `subtotal` int(11) NOT NULL,
   `status` char(50) NOT NULL,
   `kode` int(11) NOT NULL,
+  `tanggal` datetime NOT NULL,
   `id_supir` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -105,9 +105,10 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `harga`, `stok`, `gambar`) VALUES
-(6, 'Meranti', 35000, 10, 'Meranti.jpg'),
-(16, 'ulin', 40000, 10, 'Ulin.jpg'),
-(27, 'bengkirai', 90000, 101, 'Kayu-Bengkirai.jpg');
+(6, 'Meranti', 35000, 1, 'Meranti.jpg'),
+(16, 'Ulin', 40000, 1, 'Ulin.jpg'),
+(27, 'Bengkirai', 10000, 0, 'Kayu-Bengkirai.jpg'),
+(30, 'Kapur', 35000, 10, 'Kapur.jpg');
 
 -- --------------------------------------------------------
 
@@ -126,7 +127,8 @@ CREATE TABLE `supir` (
 
 INSERT INTO `supir` (`id_supir`, `nama_supir`) VALUES
 (6, 'rizq'),
-(7, 'khalid');
+(7, 'fatur'),
+(15, 'romi');
 
 --
 -- Indexes for dumped tables
@@ -174,31 +176,31 @@ ALTER TABLE `supir`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `Id_login` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `Id_login` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `mobil`
 --
 ALTER TABLE `mobil`
-  MODIFY `id_mobil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_mobil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `supir`
 --
 ALTER TABLE `supir`
-  MODIFY `id_supir` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_supir` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

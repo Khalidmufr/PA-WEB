@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include "koneksi.php" ;
     
 if ($_SESSION['role'] !== 'user') {
     header('Location: ../login.php');
@@ -10,7 +11,22 @@ if ($_SESSION['role'] !== 'user') {
     session_destroy();
     header('Location: ../login.php');
     exit();
-  } ?>
+  } 
+    $nama = $_SESSION['nama'];
+    $query = "SELECT id_login FROM login where nama = '$nama'";
+    $result = mysqli_query($koneksi, $query);
+    $isi = mysqli_fetch_assoc($result);
+    $id_user = $isi['id_login'];
+
+    $isi_pesanan = mysqli_query($koneksi, "SELECT * FROM pembelian WHERE id_login = '$id_user' ") ;
+
+    if(mysqli_num_rows($isi_pesanan) < 1){
+    echo "<script>
+    alert('Pesanan Anda Kosong');
+    document.location.href ='produk.php';
+    </script>";
+    }
+  ?>
 
 
 <!DOCTYPE html>

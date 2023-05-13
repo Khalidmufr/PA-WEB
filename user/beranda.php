@@ -7,7 +7,13 @@ if ($_SESSION['role'] !== 'user') {
     header('Location: ../login.php');
     exit();
   }
-  
+
+  if(!isset($_SERVER['HTTP_REFERER'])){
+    header('Location: ../login.php');
+    unset($_SESSION['role']); // menghapus session role
+    exit;
+  }
+
   if (isset($_GET['logout'])) {
     session_destroy();
     header('Location: ../login.php');

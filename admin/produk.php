@@ -45,7 +45,7 @@ if ($_SESSION['role'] !== 'admin') {
     if(isset($_POST["tambah"])) {
       $gambar = $_FILES['gambar']['name'];
       $harga = $_POST['harga'];
-      $nama_produk = $_POST['nama_produk'] ;
+      $nama_produk = mysqli_real_escape_string($koneksi, $_POST['nama_produk']);
       $stok = $_POST['stok'];
       $cari_nama = "SELECT nama_produk FROM produk WHERE nama_produk='$nama_produk'";
       $valid = mysqli_query($koneksi,$cari_nama);
@@ -125,7 +125,15 @@ if ($_SESSION['role'] !== 'admin') {
         .sidebar-wrapper
         {
             background-color: black;
-        }
+        }        
+        #previewne{
+          border: 1px solid #ced4da; /* border */
+          display: block;
+          margin: 0 auto;
+          max-width: 100%;
+          height: auto;
+          object-fit: contain;
+        } 
     </style>
     <body>
         <div class="d-flex" id="wrapper">
@@ -205,7 +213,7 @@ if ($_SESSION['role'] !== 'admin') {
 
                   <div class="input-box">
                     <span class="details">Gambar</span>
-                    <input type="file" id="gambar" class="form-control" placeholder="Masukkan Gambar" accept="image/*" name="gambar" onchange="preview(this,'previewne')"  required required>
+                    <input type="file" id="gambar" class="form-control" placeholder="Masukkan Gambar" accept="image/*" name="gambar" onchange="preview(this,'previewne')"  required>
                   </div>
                   <!-- <br> -->
                   <img src="../file/<?php echo $row['gambar']?>" id="previewne" class="rounded border p-1" style="width:130px; height:100px;">

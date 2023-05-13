@@ -23,7 +23,7 @@ if ($_SESSION['role'] !== 'admin') {
   
   if(isset($_POST["edit"])) {      
       $id = $_GET["id"];
-      $nama_produk = $_POST["nama_produk"];
+      $nama_produk = mysqli_real_escape_string($koneksi, $_POST['nama_produk']);
       $harga = $_POST["harga"];
       $stok = $_POST["stok"];
       $gbr = $_FILES["gambar"]["name"];

@@ -66,7 +66,6 @@
         $result = mysqli_query($koneksi, $query);
         $isi = mysqli_fetch_assoc($result);
         $id_user = $isi['id_login'];
-        $nm = $isi['nama'];
         $status = "Belum dikirim";
         // Loop melalui array dan masukkan data ke dalam tabel database
         foreach ($cart_items as $item) {
@@ -79,7 +78,7 @@
             $stok_baru = $stok_sekarang - $jumlah;
             $sql = "UPDATE produk SET stok = '$stok_baru' WHERE id_produk = '$id_produk'";
             $subtotal = $harga * $jumlah;
-            $query = "INSERT INTO pembelian (id_produk, id_login,nomor,alamat,jumlah,subtotal,status,kode) VALUES ('$id_produk', '$id_user','$nomor','$alamat','$jumlah','$subtotal','$status','$kode')";
+            $query = "INSERT INTO pembelian (id_produk, id_login,nomor,alamat,jumlah,subtotal,status,kode,tanggal) VALUES ('$id_produk', '$id_user','$nomor','$alamat','$jumlah','$subtotal','$status','$kode',NOW())";
             mysqli_query($koneksi, $query);
             mysqli_query($koneksi, $sql);
         }
