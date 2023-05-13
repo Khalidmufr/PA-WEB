@@ -23,8 +23,8 @@ if ($_SESSION['role'] !== 'admin') {
   
   if(isset($_POST["edit"])) {      
       $id = $_GET["id"];
-      $merk = $_POST["merk"];           
-      $plat = $_POST["plat"];           
+      $merk = mysqli_real_escape_string($koneksi, $_POST['merk']);        
+      $plat = mysqli_real_escape_string($koneksi, $_POST['plat']);        
       $query ="UPDATE mobil SET
                   merk = '$merk',   
                   plat = '$plat'                  

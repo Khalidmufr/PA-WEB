@@ -22,7 +22,7 @@
 
     if($row['stok']<1){
         echo "<script>
-    alert('Stok kurang dari 1');
+    alert('Stok tidak tersedia');
     document.location.href ='produk.php';
     </script>";
     }
@@ -30,8 +30,8 @@
 if (isset($_POST["submit"])) {
     // Dapatkan data produk dari form
     $id = "$_GET[id]";
-    $nomor = $_POST['nomor'];
-    $alamat = $_POST['alamat'];
+    $nomor = mysqli_real_escape_string($koneksi, $_POST['nomor']);
+    $alamat = mysqli_real_escape_string($koneksi, $_POST['alamat']);;
     $jumlah = $_POST['jumlah'];
     $harga = $row['harga'];
     $stok = $row['stok'];
@@ -168,7 +168,7 @@ if (isset($_POST["submit"])) {
                         </div>
                         <div class="input-box">
                             <span class="detail">Alamat</span>
-                            <input type="text" name="alamat" placeholder="Masukkan alamat Anda" autocomplete="off" required>
+                            <textarea id="myTextarea" name="alamat" rows="4" cols="2"  placeholder="Masukkan alamat Anda" autocomplete="off" required></textarea>
                         </div>
                         <div class="jumlah">
                             <p>Jumlah</p>
@@ -205,6 +205,19 @@ if (isset($_POST["submit"])) {
     <script src="../asset/js/pembelian.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>AOS.init();</script>
-
+    <script>
+        var textarea = document.getElementById("myTextarea");
+        // Tambahkan event listener pada textarea
+        textarea.addEventListener("input", function() {
+        // Dapatkan isi dari textarea
+        var value = this.value;
+        
+        // Hilangkan simbol-simbol yang tidak diinginkan
+        value = value.replace(/[^a-zA-Z0-9 ]/g, '');
+        
+        // Set isi textarea dengan nilai yang sudah difilter
+        this.value = value;
+        });
+    </script>
 </body>
 </html>

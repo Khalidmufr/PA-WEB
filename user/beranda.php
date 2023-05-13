@@ -1,13 +1,13 @@
 <?php
-
-require "koneksi.php";
   session_start()  ;
+require "koneksi.php";
+unset($_SESSION['info']);
 
 if ($_SESSION['role'] !== 'user') {
     header('Location: ../login.php');
     exit();
   }
-  
+
   if (isset($_GET['logout'])) {
     session_destroy();
     header('Location: ../login.php');
@@ -24,6 +24,8 @@ if ($_SESSION['role'] !== 'user') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../asset/css/style.css">
     <link rel="icon" href="../asset/gambar/Ud Haderah.png">
+    <link rel="stylesheet" href="../asset/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="../asset/css/animate.min.css">
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Beranda</title>
@@ -133,8 +135,14 @@ if ($_SESSION['role'] !== 'user') {
 <footer>
     <p>Hak Cipta © 2023 - Kelompok 3 C1</p>
 </footer>
-<script src="js/beranda.js"></script>
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>AOS.init();</script>
+        <!-- AOS -->
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>AOS.init();</script>
+        <!-- JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <!-- Swal -->
+        <script src="../asset/js/sweetalert2.min.js"></script>
+        <script src="../asset/js/animasi.js"></script>
 </body>
 </html>

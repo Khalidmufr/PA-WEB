@@ -15,7 +15,7 @@
     } 
   
   if(isset($_POST["tambah"])) {
-    $nama_supir = $_POST['nama_supir'];    
+    $nama_supir = mysqli_real_escape_string($koneksi, $_POST['nama_supir']); 
     $query = "INSERT INTO supir SET nama_supir = '$nama_supir'; ";
     $cari_nama = "SELECT nama_supir FROM supir WHERE nama_supir='$nama_supir'";
     $valid = mysqli_query($koneksi,$cari_nama);

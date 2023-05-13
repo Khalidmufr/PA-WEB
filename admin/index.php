@@ -2,6 +2,7 @@
 
 require "../koneksi.php";
   session_start()  ;
+  unset($_SESSION['info']);
 
 if ($_SESSION['role'] !== 'admin') {
     header('Location: ../login.php');

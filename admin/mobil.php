@@ -15,8 +15,8 @@ if ($_SESSION['role'] !== 'admin') {
   } 
   
   if(isset($_POST["tambah"])) {
-    $merk = $_POST['merk'];    
-    $plat = $_POST['plat'];    
+    $merk = mysqli_real_escape_string($koneksi, $_POST['merk']);   
+    $plat = mysqli_real_escape_string($koneksi, $_POST['plat']);  
     $query = "INSERT INTO Mobil SET 
     merk = '$merk',
     plat = '$plat'; ";

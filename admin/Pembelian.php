@@ -133,17 +133,19 @@ if ($_SESSION['role'] !== 'admin') {
                           <th colspan="1" bgcolor="yellow">Jumlah</th>
                           <th colspan="1" bgcolor="yellow">Subtotal</th>
                           <th colspan="1" bgcolor="yellow">Status</th>
+                          <th colspan="1" bgcolor="yellow">Tanggal Pembelian</th>
                           <th colspan="1" bgcolor="yellow">Aksi</th>
                         </tr>  
 
                         <form method="post">
             <?php 
             include "../koneksi.php" ;
-            $query = "SELECT * FROM pembelian 
+            $query = "SELECT *,DATE_FORMAT(tanggal, '%d-%m-%Y') AS tanggal FROM pembelian 
             JOIN produk ON pembelian.id_produk = produk.id_produk
             JOIN login ON pembelian.id_login = login.Id_login;";
-            
-            $data = mysqli_query($koneksi,$query) ;
+
+            $data = mysqli_query($koneksi,$query);           
+
             while ($row = mysqli_fetch_array($data)) {
             $subtotal = $row['subtotal'];
             ?>                          
@@ -156,6 +158,7 @@ if ($_SESSION['role'] !== 'admin') {
                 <td><?php echo $row['jumlah'] ; ?></td>                     
                 <td><?php echo number_format($subtotal, 0, ',', '.'); ?></td>                     
                 <td><?php echo $row['status'] ; ?></td>                     
+                <td><?php echo $row['tanggal'] ; ?></td>                     
                 <td><button  class="btn btn-sm btn-danger" type="submit" name="hapus" value="<?php echo $row["id_pembelian"] ?>"><i class="fas fa-trash"></i> Hapus</button></td>                     
               </tr>
               
