@@ -14,22 +14,17 @@ if(isset($_POST['submit'])){
     $valid_2 = mysqli_query($koneksi,$cari_username);
 
     if(mysqli_num_rows($valid) > 0){
+        $_SESSION['info'] = "Nama Sudah Digunakan";  
         $errors['u'] = "Nama Sudah Digunakan";           
     } else if(mysqli_num_rows($valid_2) > 0) {
+        $_SESSION['info'] = "Username Sudah Digunakan";
         $errors['u'] = "Username Sudah Digunakan";             
     }
     
     if (count($errors) > 0) {
-        foreach ($errors as  $error) {
-            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-            <strong>Gagal Mendaftar !</strong> $error <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-            </div>";
-        }
+        
     } else {
-        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-        <strong>Berhasil Melakukan Pendaftaran !</strong>
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>";
+        $_SESSION['info'] = "Mendaftar";
 
         $query = "INSERT INTO login (nama, username, password, role) VALUES ('$nama', '$username', '$passwordHash', '$role')";
         mysqli_query($koneksi, $query);
@@ -47,7 +42,7 @@ if(isset($_POST['submit'])){
     <!-- load custom CSS -->
     <link rel="stylesheet" href="asset/css/login.css">
     <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
-    <link rel="icon" href="../asset/gambar/Ud Haderah.png">   
+    <link rel="icon" href="/asset/gambar/Ud Haderah.png">   
 
 </head>
 <!DOCTYPE html>
@@ -66,6 +61,7 @@ if(isset($_POST['submit'])){
     <title>login</title>
 </head>
 <body>
+<div class="info-data" data-infodata="<?php if(isset($_SESSION['info'])){ echo $_SESSION['info']; } unset($_SESSION['info']); ?>"></div>    
     <div class="container">        
         <div class="box" data-aos="fade-up" data-aos-duration="1500"> 
             <h1>Buat Akun</h1>               
@@ -112,9 +108,15 @@ if(isset($_POST['submit'])){
             </div>
         </div>
     </body>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>AOS.init();</script>
-    <!-- load Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<script src="asset/js/sweetalert2.min.js"></script>
+      <!-- AOS -->
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>AOS.init();</script>
+        <!-- JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <!-- load Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <!-- Swal -->
+        <script src="asset/js/sweetalert2.min.js"></script>
+        <script src="asset/js/animasi.js"></script>
 </html>

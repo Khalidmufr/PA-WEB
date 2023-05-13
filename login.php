@@ -1,8 +1,10 @@
 <?php
 session_start();
+unset($_SESSION['role']); // menghapus session role
+
 require "koneksi.php";
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if (isset($_POST['submit'])) {
     $username = mysqli_real_escape_string($koneksi, $_POST['username']);
     $password = mysqli_real_escape_string ($koneksi, md5($_POST['password']));
     
@@ -22,37 +24,31 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             $result_user = mysqli_query($koneksi, $query_user);
             
             if (mysqli_num_rows($result_admin) == 1) {
-                    $_SESSION['role'] = 'admin';
-                    $_SESSION['username'] = $username;
-                    $row = mysqli_fetch_assoc($result_admin);
-                    $_SESSION['nama'] = $row['nama'];
-                    header("location: admin/index.php");
-
-            } else if (mysqli_num_rows($result_staff) == 1) {
-                    $_SESSION['role'] = 'staff';
-                    $_SESSION['username'] = $username;
-                    $row = mysqli_fetch_assoc($result_staff);
-                    $_SESSION['nama'] = $row['nama'];
-                    header("location: staff/index.php");
+                $_SESSION['role'] = 'admin';
+                $_SESSION['username'] = $username;
+                $row = mysqli_fetch_assoc($result_admin);
+                $_SESSION['nama'] = $row['nama'];
+                $_SESSION['info'] = "Login Admin";
                 
+            } else if (mysqli_num_rows($result_staff) == 1) {
+                $_SESSION['role'] = 'staff';
+                $_SESSION['username'] = $username;
+                $row = mysqli_fetch_assoc($result_staff);
+                $_SESSION['nama'] = $row['nama'];
+                $_SESSION['info'] = "Login Staff";
+                    
             } else if (mysqli_num_rows($result_user) == 1) {
-                    $_SESSION['role'] = 'user';
-                    $_SESSION['username'] = $username;
-                    $row = mysqli_fetch_assoc($result_user);
-                    $_SESSION['nama'] = $row['nama'];
-                    header("location: user/beranda.php");       
+                $_SESSION['role'] = 'user';
+                $_SESSION['username'] = $username;
+                $row = mysqli_fetch_assoc($result_user);
+                $_SESSION['nama'] = $row['nama'];   
+                $_SESSION['info'] = "Login User";
             } 
         } else {
-            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-            <strong>Gagal Login !</strong> Periksa Kembali Username dan Password anda
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>";
+            $_SESSION['info'] = 'Username atau password anda tidak sesuai';
         }
     } else {
-        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-            <strong>Gagal Login !</strong> Username tidak terdaftar
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>";
+        $_SESSION['info'] = 'Username tidak terdaftar';
     }
 }
 ?>
@@ -76,6 +72,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     <title>login</title>
 </head>
 <body>
+    <!-- SWAL -->
+    <div class="info-data" data-infodata="<?php if(isset($_SESSION['info'])){ echo $_SESSION['info']; } unset($_SESSION['info']); ?>"></div>
     <div class="container">        
         <div class="box" data-aos="fade-up" data-aos-duration="1500"> 
             <h1>Masuk</h1>               
@@ -110,10 +108,17 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
             </div>
         </div>
+        
+        <!-- AOS -->
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>AOS.init();</script>
+        <!-- JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <!-- load Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <!-- Swal -->
+        <script src="asset/js/sweetalert2.min.js"></script>
+        <script src="asset/js/animasi.js"></script>
     </body>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>AOS.init();</script>
-    <!-- load Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="asset/js/sweetalert2.min.js"></script>
 </html>
