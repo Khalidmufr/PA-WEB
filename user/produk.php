@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 session_start(); // Mulai session
 
 if ($_SESSION['role'] !== 'user') {
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     header('Location: products.php');
     exit();
 }
-?> -->
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,6 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="stylesheet" href="../asset/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="../asset/css/animate.min.css">
     <link rel="icon" href="../asset/gambar/Ud Haderah.png">
     
     <!-- AOS -->
@@ -70,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     <title>Produk</title>
 </head>
 <body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0" cz-shortcut-listen="true">
+<div class="info-data" data-infodata="<?php if(isset($_SESSION['info'])){ echo $_SESSION['info']; } unset($_SESSION['info']); ?>"></div>
 <div class="container">
     <header>
         <label class="logo"><img src="../asset/gambar/Ud Haderah.png"></label>
@@ -137,7 +140,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
 <footer>
     <p>Hak Cipta © 2023 - Kelompok 3 C1</p>
 </footer>
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>AOS.init();</script>
+            <!-- AOS -->
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>AOS.init();</script>
+        <!-- JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <!-- Swal -->
+        <script src="../asset/js/sweetalert2.min.js"></script>
+        <script src="../asset/js/animasi.js"></script>
 </body>
 </html>

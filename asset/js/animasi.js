@@ -33,11 +33,52 @@ if(notifikasi == "Login User"){
 	  }).then(function() {
 		  window.location.href = 'login.php';
 		});
+
+}else if(notifikasi == "Menambahkan Keranjang"){
+	Swal.fire({
+		icon: 'success',
+		title: 'Sukses',
+		text: 'Berhasil '+notifikasi,		
+		}).then(function() {
+		  window.location.href = 'produk.php';
+		});
+	
+} else if(notifikasi == "Keranjang"|| notifikasi=="Pesanan"){
+	Swal.fire({
+		icon: 'warning',
+		title: 'Perhatian',
+		text: notifikasi +' Anda Kosong',
+	  }).then(function() {
+		  window.location.href = 'produk.php';
+		});
+}
+else if(notifikasi == "Stok"){
+	Swal.fire({
+		icon: 'error',
+		title: 'Gagal',
+		text: notifikasi +' Tidak Tersedia',
+	  }).then(function() {
+		  window.location.href = 'produk.php';
+		});
+}
+else if(notifikasi == "keluar"){
+	Swal.fire({
+		title: 'Apakah anda yakin ?',
+		text: "Keluar",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		cancelButtonText: 'Batal',
+		confirmButtonText: 'Ya'
+		}).then(function() {			
+			window.location.href = '../login.php';
+	  })
 }
 else if(notifikasi == "Username tidak terdaftar" || notifikasi=="Username atau password anda tidak sesuai"  || notifikasi=="Nama Sudah Digunakan"  || notifikasi=="Username Sudah Digunakan"){
 	Swal.fire({
 	  icon: 'error',
-	  title: 'GAGAL',
+	  title: 'Gagal',
 	  text: notifikasi,
 	})
 }else if(notifikasi == "Kosong"){

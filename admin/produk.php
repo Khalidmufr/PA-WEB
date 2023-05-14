@@ -19,19 +19,19 @@ if ($_SESSION['role'] !== 'admin') {
     $data = mysqli_query ($koneksi, "SELECT * FROM produk WHERE id_produk = '$id_produk' ") ;
     $row = mysqli_fetch_array($data) ;
 
-    $gambar = $row['gambar'] ;
-    if(file_exists('../file/'.$gambar))
-    {
-      unlink('../file/'.$gambar);
-    }
-
+    
     $query = "DELETE FROM produk WHERE id_produk = '$id_produk';";
     // Menjalankan query
     if (mysqli_query($koneksi, $query)) {
+      $gambar = $row['gambar'] ;
+      if(file_exists('../file/'.$gambar))
+      {
+        unlink('../file/'.$gambar);
+      }
       echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-         <strong>Berhasil Menghapus Produk !</strong>
-         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-       </div>";
+      <strong>Berhasil Menghapus Produk !</strong>
+      <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+      </div>";
     } else {
       echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
       <strong>Gagal Menghapus !</strong> Kemungkinan id pada tabel memiliki relasi. Error: " 
