@@ -18,10 +18,7 @@
     } else {
         // Jika keranjang belanja belum ada, tampilkan pesan kosong
         $cart_items = array();
-        echo "<script>
-        alert('Keranjang Belanja anda kosong');
-        document.location.href ='produk.php'
-        </script>"; 
+        $_SESSION['info'] = "Keranjang";       
     }
 
     // Periksa apakah tombol hapus diklik
@@ -179,11 +176,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
     <link rel="stylesheet" href="../asset/css/style.css">
     <link rel="icon" href="../asset/gambar/Ud Haderah.png">
+    <link rel="stylesheet" href="../asset/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="../asset/css/animate.min.css">
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Checkout</title>
 </head>
 <body>
+<div class="info-data" data-infodata="<?php if(isset($_SESSION['info'])){ echo $_SESSION['info']; } unset($_SESSION['info']); ?>"></div>
     <div class="container">
         <header>
             <label class="logo"><img src="../asset/gambar/Ud Haderah.png"></label>
@@ -256,7 +256,7 @@
                                 echo    '<p>'. $row['nama_produk'] .'</p>';
                                 echo    '<small>Harga : Rp '. number_format($harga, 0, ',', '.') .'</small>';
                                 echo    '<br>';
-                                echo    '<a href="checkout.php?action=hapus&id=' . $item['id'] . '">Remove</a>';
+                                echo    '<a href="checkout.php?action=hapus&id=' . $item['id'] . '"><i class="fas fa-trash"></i> Hapus</a>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</td>';
@@ -285,5 +285,14 @@
             </div>
         </section>
     </div>
+            <!-- AOS -->
+            <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>AOS.init();</script>
+        <!-- JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <!-- Swal -->
+        <script src="../asset/js/sweetalert2.min.js"></script>
+        <script src="../asset/js/animasi.js"></script>
 </body>
 </html>

@@ -21,10 +21,7 @@ if ($_SESSION['role'] !== 'user') {
     $isi_pesanan = mysqli_query($koneksi, "SELECT * FROM pembelian WHERE id_login = '$id_user' ") ;
 
     if(mysqli_num_rows($isi_pesanan) < 1){
-    echo "<script>
-    alert('Pesanan Anda Kosong');
-    document.location.href ='produk.php';
-    </script>";
+        $_SESSION['info'] = "Pesanan";       
     }
   ?>
 
@@ -38,11 +35,14 @@ if ($_SESSION['role'] !== 'user') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
     <link rel="stylesheet" href="../asset/css/style.css">
     <link rel="icon" href="../asset/gambar/Ud Haderah.png">
+    <link rel="stylesheet" href="../asset/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="../asset/css/animate.min.css">
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Pesanan</title>
 </head>
 <body>
+<div class="info-data" data-infodata="<?php if(isset($_SESSION['info'])){ echo $_SESSION['info']; } unset($_SESSION['info']); ?>"></div>
     <div class="container">
         <header>
             <label class="logo"><img src="../asset/gambar/Ud Haderah.png"></label>
@@ -115,5 +115,14 @@ if ($_SESSION['role'] !== 'user') {
             </div>
         </section>
     </div>
+        <!-- AOS -->
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>AOS.init();</script>
+        <!-- JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <!-- Swal -->
+        <script src="../asset/js/sweetalert2.min.js"></script>
+        <script src="../asset/js/animasi.js"></script>
 </body>
 </html>
